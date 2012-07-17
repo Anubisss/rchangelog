@@ -1,3 +1,5 @@
+# based on https://docs.djangoproject.com/en/1.3/howto/deployment/modwsgi/
+
 import os
 import sys
 
