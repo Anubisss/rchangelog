@@ -26,3 +26,12 @@ class ChangelogLabelEntry(models.Model):
 
     class Meta:
         db_table = 'changelog_label_entry'
+
+class Account(models.Model):
+    id = models.IntegerField(primary_key=True)
+    username = models.CharField(max_length=96, unique=True)
+    sha_pass_hash = models.CharField(max_length=120)
+
+    class Meta:
+        db_table = 'account'
+        managed = False # nincs letrehozas syncnel
