@@ -12,7 +12,7 @@ class ChangelogEntry(models.Model):
 # egy changelog kategoria
 # ez ala kerulnek majd az egyes sorok a changelog oldalon
 class ChangelogLabel(models.Model):
-    name = models.CharField(max_length=64) # a label neve, pl.: Egyeb, Event, Druid
+    name = models.CharField(max_length=64, unique=True) # a label neve, pl.: Egyeb, Event, Druid
 
     class Meta:
         db_table = 'changelog_label'
