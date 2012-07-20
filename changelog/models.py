@@ -3,7 +3,6 @@ from django.db import models
 # changelog bejegyzes, "oldal"
 class ChangelogEntry(models.Model):
     date = models.DateField() # a changelog bejegyzes "cime"
-    created = models.DateTimeField(auto_now_add=True) # amikor a bejegyzes letrejott
 
     class Meta:
         db_table = 'changelog_entry' # table nev felulirasa, changelog_changelogentry helyett
