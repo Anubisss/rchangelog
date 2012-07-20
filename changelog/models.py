@@ -4,7 +4,6 @@ from django.db import models
 class ChangelogEntry(models.Model):
     date = models.DateField() # a changelog bejegyzes "cime"
     created = models.DateTimeField(auto_now_add=True) # amikor a bejegyzes letrejott
-    publisher_accid = models.PositiveIntegerField() # a bekuldo account ID-je
 
     class Meta:
         db_table = 'changelog_entry' # table nev felulirasa, changelog_changelogentry helyett
@@ -34,4 +33,4 @@ class Account(models.Model):
 
     class Meta:
         db_table = 'account'
-        managed = False # nincs letrehozas syncnel
+        managed = False # nincs letrehozas syncnel, mivel ez mar egy letezo account table
