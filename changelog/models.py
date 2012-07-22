@@ -12,6 +12,11 @@ class ChangelogEntry(models.Model):
         return self.date.strftime('%Y. %m. %d.')
     date_str.short_description = 'Date' # ez a nev jelenik meg az admin feluleten az oszlopnal
 
+    # vissza adja hany ChangelogLabelEntry tartozik ide
+    def ChangelogLabelEntry_Count(self):
+        return self.changeloglabelentry_set.count()
+    ChangelogLabelEntry_Count.short_description = 'ChangelogLabelEntry Count'
+
     class Meta:
         db_table = 'changelog_entry' # table nev felulirasa, changelog_changelogentry helyett
 
