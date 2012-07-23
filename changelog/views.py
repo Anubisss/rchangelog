@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from changelog.models import ChangelogEntry
 
 def index(request):
@@ -6,5 +6,5 @@ def index(request):
     return render_to_response('changelog/index.html', {'changelogs': changelogs})
 
 def detail(request, changelog_entry_id):
-    changelog = ChangelogEntry.objects.get(pk=changelog_entry_id)
+    changelog = get_object_or_404(ChangelogEntry, pk=changelog_entry_id)
     return render_to_response('changelog/detail.html', {'changelog': changelog})
