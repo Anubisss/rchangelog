@@ -10,6 +10,14 @@ class ChangelogEntryAdmin(admin.ModelAdmin):
     list_display_links = ('id', 'date_str') # mindket oszlop legyen "kattinthato"
     inlines = [ChangelogLabelEntryInline] # ugyanitt listazzuk/szerkesztjuk a ChangelogLabelEntry-ket is
 
+    def make_public(modeladmin, request, queryset):
+        queryset.update(public=True)
+
+    def make_unpublic(modeladmin, request, queryset):
+        queryset.update(public=False)
+
+    actions = [make_public, make_unpublic] # az admin feluleten (lenyiolo menubol) egyszerre tobb bejegyzest lehet (un)publikussa tenni
+
 class ChangelogLabelAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
     list_editable = ('name',) # mar a listazasnal szerkeszthetok a nevek
