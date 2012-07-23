@@ -1,0 +1,9 @@
+{% if changelogs %}
+    <ul>
+    {% for changelog in changelogs %}
+        <li><a href="{{ changelog.id }}">{{ changelog.date_str }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Nincs changelog bejegyzés.</p>
+{% endif %}
