@@ -1,7 +1,7 @@
 {% if changelogs %}
     <ul>
     {% for changelog in changelogs %}
-        <li><a href="{{ changelog.id }}">{{ changelog.date_str }}</a></li>
+        <li><a href="{% url changelog.views.detail changelog_entry_id=changelog.id %}">{{ changelog.date_str }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
