@@ -3,6 +3,7 @@ from django.db import models
 # changelog bejegyzes, "oldal"
 class ChangelogEntry(models.Model):
     date = models.DateField() # a changelog bejegyzes "cime"
+    public = models.BooleanField() # a bejegyzes lathato-e mindenki szamara
 
     def __unicode__(self):
         return self.date.__str__()
