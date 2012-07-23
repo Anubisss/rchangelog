@@ -19,6 +19,7 @@ class ChangelogEntry(models.Model):
 
     class Meta:
         db_table = 'changelog_entry' # table nev felulirasa, changelog_changelogentry helyett
+        ordering = ['-date'] # csokkeno sorrendu rendezes, azaz a legujabb datum lesz legelol
 
 # egy changelog kategoria
 # ez ala kerulnek majd az egyes sorok a changelog oldalon
