@@ -16,7 +16,7 @@ class ChangelogEntryAdmin(admin.ModelAdmin):
     def make_unpublic(modeladmin, request, queryset):
         queryset.update(public=False)
 
-    actions = [make_public, make_unpublic] # az admin feluleten (lenyiolo menubol) egyszerre tobb bejegyzest lehet (un)publikussa tenni
+    actions = [make_public, make_unpublic] # az admin feluleten (lenyilo menubol) egyszerre tobb bejegyzest lehet (un)publikussa tenni
 
 class ChangelogLabelAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')

@@ -7,4 +7,5 @@ def index(request):
 
 def detail(request, changelog_entry_id):
     changelog = get_object_or_404(ChangelogEntry, pk=changelog_entry_id, public=True)
-    return render_to_response('changelog/detail.html', {'changelog': changelog})
+    changelog_labels = changelog.changeloglabelentry_set.all()
+    return render_to_response('changelog/detail.html', {'changelog': changelog, 'changelog_labels': changelog_labels})

@@ -1,1 +1,10 @@
 <h1>{{ changelog.date_str }}</h1>
+{% if changelog_labels %}
+    {% for changelog_label in changelog_labels %}
+    <ul>{{ changelog_label.changelog_label_id }}
+        <li>{{ changelog_label.content }}</li>
+    </ul>
+    {% endfor %}
+{% else %}
+    <p>Nincs bejegyzés.</p>
+{% endif %}
