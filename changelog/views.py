@@ -12,6 +12,7 @@ def detail(request, changelog_entry_id):
     changelog_label_categorized = list() # ez a lista tartalmazza a ChangelogLabel_Container objektumokat
     for label_entry in changelog_label_entries:
         ChangelogLabel_Container.add(label_entry, changelog_label_categorized)
+    changelog_label_categorized.sort()
 
     return render_to_response('changelog/detail.html', {'changelog': changelog, 'changelog_labels': changelog_label_categorized})
 
@@ -22,6 +23,15 @@ class ChangelogLabel_Container:
     def __init__(self):
         self.changelog_label_entries = list()
         self.changelog_label = ChangelogLabel()
+
+    # eloszor a priority alapjan rendez, a nagyobb kerul elore
+    # majd ha van egyezo priority, akkor a name alapjan (ABC sorrend)
+    def __cmp__(self, other):
+        cmp_result = cmp(self.changelog_label.priority, other.changelog_label.priority)
+        if (cmp_result != 0):
+            return -cmp_result # ellentetes ertek kell
+        else:
+            return cmp(self.changelog_label.name, other.changelog_label.name)
 
     # statikus metodus
     # o hozza letre az uj labeleket vagy adja hozza a bejegyzest mar egy meglevohoz

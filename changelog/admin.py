@@ -19,8 +19,8 @@ class ChangelogEntryAdmin(admin.ModelAdmin):
     actions = [make_public, make_unpublic] # az admin feluleten (lenyilo menubol) egyszerre tobb bejegyzest lehet (un)publikussa tenni
 
 class ChangelogLabelAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    list_editable = ('name',) # mar a listazasnal szerkeszthetok a nevek
+    list_display = ('id', 'name', 'priority')
+    list_editable = ('name', 'priority') # mar a listazasnal szerkeszthetok a nevek
 
 admin.site.register(ChangelogEntry, ChangelogEntryAdmin)
 admin.site.register(ChangelogLabel, ChangelogLabelAdmin)
