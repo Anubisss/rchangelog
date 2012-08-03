@@ -1,6 +1,7 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from changelog.models import ChangelogEntry, ChangelogLabel
 from datetime import date
+from django.http import Http404
 
 def index(request):
     changelogs = ChangelogEntry.objects.filter(public=True)
@@ -16,7 +17,11 @@ def index(request):
 
 def detail(request, year, month, day):
     c_date = date(int(year), int(month), int(day))
-    changelog = get_object_or_404(ChangelogEntry, date=c_date, public=True)
+    changelog = get_object_or_404(ChangelogEntry, date=c_date)
+
+    if changelog.public == False and not request.user.is_staff: # ha nem publikus akkor csak a staff lathatja
+        raise Http404();
+
     changelog_label_entries = changelog.changeloglabelentry_set.all()
 
     changelog_label_categorized = list() # ez a lista tartalmazza a ChangelogLabel_Container objektumokat
