@@ -5,6 +5,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'changelog.views.index'),
-    url(r'^(?P<changelog_entry_id>\d+)$', 'changelog.views.detail'),
+    url(r'^(?P<year>\d{4})/$', 'changelog.views.archive_year'),
+    url(r'^(?P<year>\d{4})/(?P<month>0[1-9]|1[0-2])/$', 'changelog.views.archive_month'),
+    url(r'^(?P<year>\d{4})/(?P<month>0[1-9]|1[0-2])/(?P<day>0[1-9]|[12][0-9]|3[0-1])/$', 'changelog.views.detail'),
     url(r'^nagyonkiralycsavok/', include(admin.site.urls)),
 )

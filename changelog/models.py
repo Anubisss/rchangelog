@@ -27,14 +27,14 @@ class ChangelogEntry(models.Model):
 # ez ala kerulnek majd az egyes sorok a changelog oldalon
 class ChangelogLabel(models.Model):
     name = models.CharField(max_length=64, unique=True) # a label neve, pl.: Egyeb, Event, Druid
-    priority = models.PositiveSmallIntegerField(validators=[MaxValueValidator(100)])
+    priority = models.PositiveSmallIntegerField(validators=[MaxValueValidator(100)]) # 0-100
 
     def __unicode__(self):
         return self.name
 
     class Meta:
         db_table = 'changelog_label'
-        ordering = ['-priority', 'name'] # rendezes prioritas (legnagyobb van legelol), majd nev (ABC sorrend) alapjan
+        ordering = ['-priority', 'name'] # rendezes prioritas (csokkeno sorrend), majd nev (ABC sorrend) alapjan
 
 # changelog kategoriahoz bejegyzes
 # lista elem es a ChangelogLabel a lista "cime"
