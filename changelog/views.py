@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, redirect
 from changelog.models import ChangelogEntry, ChangelogLabel
 from datetime import date
 from django.http import Http404
@@ -39,6 +39,9 @@ def archive_month(request, year, month):
     changelogs = ChangelogEntry.objects.filter(date__year=year, date__month=month, public=True)
     ym = date(int(year), int(month), 1)
     return render_to_response('changelog/archive_month.html', {'ym': ym, 'changelogs': changelogs})
+
+def old_url(request, year, month, day):
+    return redirect('changelog.views.detail', year=year, month=month, day=day)
 
 # ez az osztaly tarolja az egyes changelog label-hez tartozo bejegyzeseket
 # segitsegevel valosul meg, hogy az egy kategoriaba tartozo bejegyzesek

@@ -7,7 +7,7 @@ urlpatterns = patterns('',
     url(r'^$', 'changelog.views.index'),
     url(r'^(?P<year>\d{4})/$', 'changelog.views.archive_year'),
     url(r'^(?P<year>\d{4})/(?P<month>0[1-9]|1[0-2])/$', 'changelog.views.archive_month'),
-    url(r'^(?P<year>\d{4})_(?P<month>0[1-9]|1[0-2])_(?P<day>0[1-9]|[12][0-9]|3[0-1]).html$', 'changelog.views.detail'), # regi tipusu URL-ek kiszolgalasa, 2011_03_02.html
-    url(r'^(?P<year>\d{4})/(?P<month>0[1-9]|1[0-2])/(?P<day>0[1-9]|[12][0-9]|3[0-1])/$', 'changelog.views.detail'), # ennek hatrebb kell lennie, hogy a reverse URL ezt vegye alapul
-    url(r'^nagyonkiralycsavok/', include(admin.site.urls)),
+    url(r'^(?P<year>\d{4})/(?P<month>0[1-9]|1[0-2])/(?P<day>0[1-9]|[12][0-9]|3[0-1])/$', 'changelog.views.detail'),
+    url(r'^(?P<year>\d{4})_(?P<month>0[1-9]|1[0-2])_(?P<day>0[1-9]|[12][0-9]|3[0-1]).html$', 'changelog.views.old_url'), # regi tipusu URL-ek atiranyitasa, 2011_03_02.html
+    url(r'^legnagyobbkiralycsavok/', include(admin.site.urls)),
 )
