@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator
+from django.core.urlresolvers import reverse
 
 # changelog bejegyzes, "oldal"
 class ChangelogEntry(models.Model):
@@ -18,6 +19,13 @@ class ChangelogEntry(models.Model):
     def ChangelogLabelEntry_Count(self):
         return self.changeloglabelentry_set.count()
     ChangelogLabelEntry_Count.short_description = 'ChangelogLabelEntry Count'
+
+    # elonezeti link generalasa
+    # meg nem publikus bejegyzesek ellenorzesekor jol jon
+    def PreviewLink(self):
+        return '<a href="%s" target="_blank">%s</a>' % (reverse('changelog.views.detail', kwargs={'year': self.date.strftime('%Y'), 'month': self.date.strftime('%m'), 'day': self.date.strftime('%d')}), self.date_str())
+    PreviewLink.allow_tags = True # HTML tagok engedelyezese, igy nincs escape-eles
+    PreviewLink.short_description = 'Preview'
 
     class Meta:
         db_table = 'changelog_entry' # table nev felulirasa, changelog_changelogentry helyett

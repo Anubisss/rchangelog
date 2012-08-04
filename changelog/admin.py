@@ -6,7 +6,7 @@ class ChangelogLabelEntryInline(admin.TabularInline):
     extra = 3 # alapbol 3 ures, kitoltheto ChangelogLabelEntry megjelenik
 
 class ChangelogEntryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'date_str', 'ChangelogLabelEntry_Count', 'public') # listazasnal ezek a mezok jelennek meg
+    list_display = ('id', 'date_str', 'ChangelogLabelEntry_Count', 'public', 'PreviewLink') # listazasnal ezek a mezok jelennek meg
     list_display_links = ('id', 'date_str') # mindket oszlop legyen "kattinthato"
     inlines = [ChangelogLabelEntryInline] # ugyanitt listazzuk/szerkesztjuk a ChangelogLabelEntry-ket is
 
