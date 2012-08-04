@@ -1,9 +1,10 @@
+{% load bbcode %}
 <h1>{{ changelog.date_str }}</h1>
 {% if changelog_labels %}
     {% for clc in changelog_labels %}
     <ul>{{ clc.changelog_label.name }}
         {% for cle in clc.changelog_label_entries %}
-        <li>{{ cle.content|linebreaks }}</li>
+        <li>{% filter bbcode %} {{ cle.content }} {% endfilter %}</li>
         {% endfor %}
     </ul>
     {% endfor %}
