@@ -1,9 +1,18 @@
 from changelog.models import ChangelogEntry, ChangelogLabel, ChangelogLabelEntry
 from django.contrib import admin
+from django.forms import ModelForm, Textarea
+
+class ChangelogLabelEntryForm(ModelForm):
+    class Meta:
+        model = ChangelogLabelEntry
+        widgets = {
+            'content': Textarea(attrs={'cols': 140, 'rows': 3}), # textarea hasznalata
+        }
 
 class ChangelogLabelEntryInline(admin.TabularInline):
     model = ChangelogLabelEntry
     extra = 3 # alapbol 3 ures, kitoltheto ChangelogLabelEntry megjelenik
+    form = ChangelogLabelEntryForm
 
 class ChangelogEntryAdmin(admin.ModelAdmin):
     list_display = ('id', 'date_str', 'ChangelogLabelEntry_Count', 'public', 'PreviewLink') # listazasnal ezek a mezok jelennek meg
