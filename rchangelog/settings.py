@@ -74,7 +74,6 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    '/usr/local/lib/python2.6/dist-packages/django/contrib/admin/static/',
 )
 
 # List of finder classes that know how to find static files in
