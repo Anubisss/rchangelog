@@ -47,7 +47,7 @@ class ChangelogLabel(models.Model):
 # changelog kategoriahoz bejegyzes
 # lista elem es a ChangelogLabel a lista "cime"
 class ChangelogLabelEntry(models.Model):
-    content = models.CharField(max_length=512) # valodi tartalom, pl.: x spell javitva
+    content = models.CharField(max_length=512, help_text="BBCode:\n\n- [url]http://domain.hu/\n- [url=http://domain.hu/]domain link[/url]\n- [b]felkover[/b]\n- [u]alahuzott[/u]\n- [i]dolt[/i]") # valodi tartalom, pl.: x spell javitva
     changelog_entry_id = models.ForeignKey(ChangelogEntry, db_column='changelog_entry_id') # a bejegyzes melyik changeloghoz tartozik
     changelog_label_id = models.ForeignKey(ChangelogLabel, db_column='changelog_label_id') # a bejegyzes melyik kategoriahoz tartozik
 
