@@ -1,5 +1,7 @@
 # Django settings for rchangelog project.
 
+PROJECT_ROOT = '/path/to/rchangelog' # project mappa (itt talalhato a manage.py fajl)
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -66,7 +68,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/path/to/rchangelog/static'
+STATIC_ROOT = '%s/static' % PROJECT_ROOT
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -109,7 +111,7 @@ ROOT_URLCONF = 'rchangelog.urls'
 WSGI_APPLICATION = 'rchangelog.wsgi.application'
 
 TEMPLATE_DIRS = (
-    '/path/to/rchangelog/template',
+    '%s/template' % PROJECT_ROOT,
 )
 
 INSTALLED_APPS = (
