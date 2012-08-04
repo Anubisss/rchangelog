@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 
 # changelog bejegyzes, "oldal"
 class ChangelogEntry(models.Model):
-    date = models.DateField() # a changelog bejegyzes "cime"
+    date = models.DateField(unique=True) # a changelog bejegyzes "cime"
     public = models.BooleanField() # a bejegyzes lathato-e mindenki szamara
 
     def __unicode__(self):
