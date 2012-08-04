@@ -18,13 +18,13 @@ DATABASES = {
         'HOST': '/var/run/mysqld/mysqld.sock',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     },
-    'account': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'EMUS_01realmd',
-        'USER': 'rchangelogger',
-        'PASSWORD': '',
-        'HOST': '/var/run/mysqld/mysqld.sock',
-    }
+    # 'account': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'EMUS_01realmd',
+    #     'USER': 'rchangelogger',
+    #     'PASSWORD': '',
+    #     'HOST': '/var/run/mysqld/mysqld.sock',
+    # }
 }
 
 # Local time zone for this installation. Choices can be found here:
