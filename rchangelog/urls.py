@@ -4,6 +4,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^$', 'changelog.views.index'),
     url(r'^all/$', 'changelog.views.archive_all'),
     url(r'^(?P<year>\d{4})/$', 'changelog.views.archive_year'),
     url(r'^(?P<year>\d{4})/(?P<month>0[1-9]|1[0-2])/$', 'changelog.views.archive_month'),

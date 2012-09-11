@@ -3,6 +3,9 @@ from changelog.models import ChangelogEntry, ChangelogLabel
 from datetime import date
 from django.http import Http404
 
+def index(request):
+    return render_to_response('changelog/index.html')
+
 def archive_all(request):
     changelogs = ChangelogEntry.objects.filter(public=True)
     years = list()
@@ -13,7 +16,7 @@ def archive_all(request):
         d = date(c.date.year, c.date.month, 1)
         if d not in years_months:
             years_months.append(d)
-    return render_to_response('changelog/index.html', {'changelogs': changelogs, 'years': years, 'years_months': years_months})
+    return render_to_response('changelog/archive_all.html', {'changelogs': changelogs, 'years': years, 'years_months': years_months})
 
 def archive_year(request, year):
     changelogs = ChangelogEntry.objects.filter(date__year=year, public=True)
