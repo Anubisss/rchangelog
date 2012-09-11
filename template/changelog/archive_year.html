@@ -1,8 +1,9 @@
+{% load url from future %}
 <h1>{{ year }}.</h1>
 {% if changelogs %}
     <ul>
     {% for changelog in changelogs %}
-        <li><a href="{% url changelog.views.detail year=changelog.date|date:'Y' month=changelog.date|date:'m' day=changelog.date|date:'d' %}">{{ changelog.date_str }}</a></li>
+        <li><a href="{% url 'changelog.views.detail' year=changelog.date|date:'Y' month=changelog.date|date:'m' day=changelog.date|date:'d' %}">{{ changelog.date_str }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
