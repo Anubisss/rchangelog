@@ -3,7 +3,7 @@ from changelog.models import ChangelogEntry, ChangelogLabel
 from datetime import date
 from django.http import Http404
 
-def index(request):
+def archive_all(request):
     changelogs = ChangelogEntry.objects.filter(public=True)
     years = list()
     years_months = list()
@@ -14,6 +14,18 @@ def index(request):
         if d not in years_months:
             years_months.append(d)
     return render_to_response('changelog/index.html', {'changelogs': changelogs, 'years': years, 'years_months': years_months})
+
+def archive_year(request, year):
+    changelogs = ChangelogEntry.objects.filter(date__year=year, public=True)
+    return render_to_response('changelog/archive_year.html', {'year': year, 'changelogs': changelogs})
+
+def archive_month(request, year, month):
+    changelogs = ChangelogEntry.objects.filter(date__year=year, date__month=month, public=True)
+    ym = date(int(year), int(month), 1)
+    return render_to_response('changelog/archive_month.html', {'ym': ym, 'changelogs': changelogs})
+
+def old_url(request, year, month, day):
+    return redirect('changelog.views.detail', year=year, month=month, day=day)
 
 def detail(request, year, month, day):
     c_date = date(int(year), int(month), int(day))
@@ -30,18 +42,6 @@ def detail(request, year, month, day):
     changelog_label_categorized.sort()
 
     return render_to_response('changelog/detail.html', {'changelog': changelog, 'changelog_labels': changelog_label_categorized})
-
-def archive_year(request, year):
-    changelogs = ChangelogEntry.objects.filter(date__year=year, public=True)
-    return render_to_response('changelog/archive_year.html', {'year': year, 'changelogs': changelogs})
-
-def archive_month(request, year, month):
-    changelogs = ChangelogEntry.objects.filter(date__year=year, date__month=month, public=True)
-    ym = date(int(year), int(month), 1)
-    return render_to_response('changelog/archive_month.html', {'ym': ym, 'changelogs': changelogs})
-
-def old_url(request, year, month, day):
-    return redirect('changelog.views.detail', year=year, month=month, day=day)
 
 # ez az osztaly tarolja az egyes changelog label-hez tartozo bejegyzeseket
 # segitsegevel valosul meg, hogy az egy kategoriaba tartozo bejegyzesek
