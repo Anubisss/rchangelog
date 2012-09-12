@@ -1,0 +1,45 @@
+footer {
+  text-align: center;
+  margin: 100px 10% 0 10%;
+  padding-top: 10px;
+  border-top: 2px dotted #CCC;
+}
+
+.hero-unit h1 {
+  border-bottom: 2px dashed #000;
+  margin-bottom: 30px;
+}
+
+.hero-unit p {
+  margin-left: 15px;
+}
+
+.hero-unit .btn {
+  margin-top: 20px;
+}
+
+#fixes {
+  margin-left: 10px;
+}
+
+.fix_category_node:first-child {
+  margin-top: 80px;
+}
+
+.fix_category_node {
+  margin-top: 40px;
+  margin-right: 10%;
+}
+
+.fix_category_node h3 {
+  border-bottom: 2px dotted #000;
+  margin-bottom: 15px;
+}
+
+.fix_category_node li {
+  margin-left: 5px;
+}
+
+#fixes .btn {
+  margin-top: 50px;
+}
