@@ -1,0 +1,38 @@
+{# A fo (skeleton) HTML template fajl, ezt orokitik majd az egyes viewek templatejei. #}<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<title>{{ SITE_NAME }} | {% block title %}{% endblock %}</title>
+{% load staticfiles %}
+<link href="{% static 'changelog/css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'changelog/css/rchangelog.css' %}" rel="stylesheet">
+</head>
+<body>
+<div class="navbar">
+<div class="navbar-inner">
+<div class="container-fluid">
+{% load url from future %}
+<a class="brand" href="{% url 'changelog.views.index' %}">{{ SITE_NAME }}</a>
+<ul class="nav">
+{% load active_navbar %}
+{% url 'changelog.views.detail' year=latest_changelog.date|date:'Y' month=latest_changelog.date|date:'m' day=latest_changelog.date|date:'d' as url_latest_changelog %}
+{% url 'changelog.views.archive_all' as url_archive_all %}
+<li{% active_navbar request.path url_latest_changelog %}><a href="{{ url_latest_changelog }}">Legfrissebb bejegyzés: {{ latest_changelog.date_str }}</a></li>
+<li{% active_navbar request.path url_archive_all %}><a href="{{ url_archive_all }}">Összes bejegyzés</a></li>
+{% block active_nav %}{% endblock %}
+</ul>
+</div>
+</div>
+</div>
+<div class="container-fluid">
+<div class="page-header">
+<h1>{{ SITE_NAME }}</h1>
+</div>
+{% block content %}{% endblock %}
+<footer>
+<p><small>Az <a href="https://github.com/Anubisss/rchangelog" target="_blank">rChangelog</a> rendszer szabadon használható, módosítható és terjeszthető a <a href="http://www.gnu.org/licenses/gpl-3.0.html" target="_blank">GNU GPLv3</a> licenc alatt.</small></p>
+<address>&copy; {% now 'Y' %} {{ SITE_FOOTER_ADDRESS|safe }}</address>
+</footer>    
+</div>
+</body>
+</html>

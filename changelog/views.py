@@ -2,9 +2,14 @@ from django.shortcuts import render_to_response, get_object_or_404, redirect
 from changelog.models import ChangelogEntry, ChangelogLabel
 from datetime import date
 from django.http import Http404
+from django.template import RequestContext
 
 def index(request):
-    return render_to_response('changelog/index.html')
+    # TODO: public
+    latest_changelog = ChangelogEntry.objects.latest(field_name='date')
+    ym = date(latest_changelog.date.year, latest_changelog.date.month, 1)
+    latest_changelogs = ChangelogEntry.objects.filter(date__year=ym.year, date__month=ym.month) # utolso havi bejegyzesek
+    return render_to_response('changelog/index.html', {'ym': ym, 'latest_changelogs': latest_changelogs}, context_instance=RequestContext(request))
 
 def archive_all(request):
     changelogs = ChangelogEntry.objects.filter(public=True)
@@ -16,16 +21,21 @@ def archive_all(request):
         d = date(c.date.year, c.date.month, 1)
         if d not in years_months:
             years_months.append(d)
-    return render_to_response('changelog/archive_all.html', {'changelogs': changelogs, 'years': years, 'years_months': years_months})
+    return render_to_response('changelog/archive_all.html', {'changelogs': changelogs, 'years': years, 'years_months': years_months}, context_instance=RequestContext(request))
 
 def archive_year(request, year):
     changelogs = ChangelogEntry.objects.filter(date__year=year, public=True)
-    return render_to_response('changelog/archive_year.html', {'year': year, 'changelogs': changelogs})
+    months = list()
+    for c in changelogs:
+        month = date(int(year), c.date.month, 1)
+        if month not in months:
+            months.append(month)
+    return render_to_response('changelog/archive_year.html', {'year': year, 'changelogs': changelogs, 'months': months}, context_instance=RequestContext(request))
 
 def archive_month(request, year, month):
     changelogs = ChangelogEntry.objects.filter(date__year=year, date__month=month, public=True)
     ym = date(int(year), int(month), 1)
-    return render_to_response('changelog/archive_month.html', {'ym': ym, 'changelogs': changelogs})
+    return render_to_response('changelog/archive_month.html', {'ym': ym, 'changelogs': changelogs}, context_instance=RequestContext(request))
 
 def old_url(request, year, month, day):
     return redirect('changelog.views.detail', year=year, month=month, day=day)
@@ -44,7 +54,7 @@ def detail(request, year, month, day):
         ChangelogLabel_Container.add(label_entry, changelog_label_categorized)
     changelog_label_categorized.sort()
 
-    return render_to_response('changelog/detail.html', {'changelog': changelog, 'changelog_labels': changelog_label_categorized})
+    return render_to_response('changelog/detail.html', {'changelog': changelog, 'changelog_labels': changelog_label_categorized}, context_instance=RequestContext(request))
 
 # ez az osztaly tarolja az egyes changelog label-hez tartozo bejegyzeseket
 # segitsegevel valosul meg, hogy az egy kategoriaba tartozo bejegyzesek

@@ -1,5 +1,19 @@
+{% extends 'changelog/skel.html' %}
+
+{% block title %}{{ ym.year }}. év {{ ym|date:'F' }} havi bejegyzései{% endblock %}
+
+{% block active_nav %}
 {% load url from future %}
-<h1>{{ ym.year }}. {{ ym|date:'F' }}</h1>
+<li class="active"><a href="{% url 'changelog.views.archive_month' year=ym|date:'Y' month=ym|date:'m' %}">{{ ym.year }}. év {{ ym|date:'F' }} havi bejegyzései</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="hero-unit">
+<h1>{{ ym.year }}. év {{ ym|date:'F' }} havi bejegyzései</h1>
+<p>Március és Április hónap bejegyzései.</p>
+<p><a href="{% url 'changelog.views.index' %}" class="btn btn-inverse"><i class="icon-white icon-arrow-left"></i> Vissza a címlapra</a>
+</div>
+<div>
 {% if changelogs %}
     <ul>
     {% for changelog in changelogs %}
@@ -9,3 +23,6 @@
 {% else %}
     <p>Nincs changelog bejegyzés.</p>
 {% endif %}
+</div>
+<p><a href="{% url 'changelog.views.index' %}" class="btn btn-inverse"><i class="icon-white icon-arrow-left"></i> Vissza a címlapra</a></p>
+{% endblock %}

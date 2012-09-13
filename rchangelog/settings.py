@@ -1,6 +1,12 @@
 # Django settings for rchangelog project.
 
+# rChangelog specifikus beallitasok, tehat nem Django default
+
 PROJECT_ROOT = '/path/to/rchangelog' # project mappa (itt talalhato a manage.py fajl)
+SITE_NAME = 'rWorld Changelog' # oldal neve, ez jelenik meg a cimsavban, menuben es a page-header-ben
+SITE_FOOTER_ADDRESS = '<a href="http://rworld.hu/">rWorld</a>' # ez jelenik meg alul a footerben a "&copy; datum" utan
+
+# #############################################################################
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -112,6 +118,21 @@ WSGI_APPLICATION = 'rchangelog.wsgi.application'
 
 TEMPLATE_DIRS = (
     '%s/template' % PROJECT_ROOT,
+)
+
+# List of processors used by RequestContext to populate the context.
+# Each one should be a callable that takes the request object as its
+# only parameter and returns a dictionary to add to the context.
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.core.context_processors.request',
+    'django.contrib.messages.context_processors.messages',
+    'changelog.context_processor.my_context_processor',
 )
 
 INSTALLED_APPS = (

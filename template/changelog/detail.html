@@ -1,13 +1,36 @@
-{% load bbcode %}
+{% extends 'changelog/skel.html' %}
+
+{% block title %}Bejegyzés: {{ changelog.date_str }}{% endblock %}
+
+{% block active_nav %}
+{% load url from future %}
+{% if changelog != latest_changelog %}
+    <li class="active"><a href="{% url 'changelog.views.detail' year=changelog.date|date:'Y' month=changelog.date|date:'m' day=changelog.date|date:'d' %}">Bejegyzés: {{ changelog.date_str }}</a></li>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="hero-unit">
 <h1>{{ changelog.date_str }}</h1>
+<p>Death Knight, Paladin, Mage, Quest, Achievement, Gameobject, NPC, Icecrown Citadel Raid, Core és Egyéb javítások találhatók a bejegyzésben.</p>
+<p><a href="{% url 'changelog.views.index' %}" class="btn btn-inverse"><i class="icon-white icon-arrow-left"></i> Vissza a címlapra</a>
+</div>
+<div id="fixes">
+{% load bbcode %}
 {% if changelog_labels %}
     {% for clc in changelog_labels %}
-    <ul>{{ clc.changelog_label.name }}
-        {% for cle in clc.changelog_label_entries %}
-        <li>{% filter bbcode %} {{ cle.content }} {% endfilter %}</li>
-        {% endfor %}
-    </ul>
+        <div class="fix_category_node">
+        <h3>{{ clc.changelog_label.name }}</h3>
+        <ul>
+            {% for cle in clc.changelog_label_entries %}
+                <li>{% filter bbcode %} {{ cle.content }} {% endfilter %}</li>
+            {% endfor %}
+        </ul>
+        </div>
     {% endfor %}
 {% else %}
     <p>Nincs bejegyzés.</p>
 {% endif %}
+<p><a href="{% url 'changelog.views.index' %}" class="btn btn-inverse"><i class="icon-white icon-arrow-left"></i> Vissza a címlapra</a>
+</div>
+{% endblock %}

@@ -1,1 +1,31 @@
-<h1>Index</h1>
+{% extends 'changelog/skel.html' %}
+
+{% block title %}Címlap{% endblock %}
+
+{% block content %}
+<div class="hero-unit">
+<h1>Changelog</h1>
+<p>A javítások (amik néha rontások ) elsődlegesen a <a href="#">TrinityCore</a>-tól (TC) származnak, de jó pár fixet mi magunk írunk meg. A TC javításai (commitok) a saját repository-jában (az emu "tárhelye") tekinthetők meg. Mivel viszonylag sok fixet nyújt a TC, így ezeket is próbáljuk írni a changelog-ba, persze csak azokat, amelyeket egy átlagos player képes megérteni és kihathatnak a játékára. Ne feledd, hogy vannak olyan javítások is (elsősorban a TC-től), amik nálunk még nem elérhetők (pl.: insta fixek), mert az adott "dolog" még nincs engedélyezve.</p>
+<p><a class="btn btn-primary btn-large" href="#">Bővebben <i class="icon-white icon-arrow-right"></i></a></p>
+</div>
+<div class="row-fluid">
+<div class="span12">
+{% load url from future %}
+<h2>Friss bejegyzések</h2>
+<ul>
+<li><a href="{% url 'changelog.views.archive_year' year=ym|date:'Y' %}">{{ ym.year }}</a>
+<ul>
+<li><a href="{% url 'changelog.views.archive_month' year=ym|date:'Y' month=ym|date:'m' %}">{{ ym|date:'F' }}</a>
+<ul>
+{% for changelog in latest_changelogs %}
+    <li><a href="{% url 'changelog.views.detail' year=changelog.date|date:'Y' month=changelog.date|date:'m' day=changelog.date|date:'d' %}">{{ changelog.date_str }}</a></li>
+{% endfor %}
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a class="btn btn-info" href="{% url 'changelog.views.archive_all' %}">Összes <i class="icon-white icon-arrow-right"></i></a></p>
+</div>
+</div>
+{% endblock %}

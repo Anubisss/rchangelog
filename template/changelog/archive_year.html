@@ -1,11 +1,36 @@
+{% extends 'changelog/skel.html' %}
+
+{% block title %}{{ year }}. év bejegyzései{% endblock %}
+
+{% block active_nav %}
 {% load url from future %}
-<h1>{{ year }}.</h1>
+<li class="active"><a href="{% url 'changelog.views.archive_year' year=year %}">{{ year }}. év bejegyzései</a></li>
+{% endblock %}
+
+{% block content %}
+{% load url from future %}
+<div class="hero-unit">
+<h1>{{ year }}. év bejegyzései</h1>
+<p>Március és Április hónap bejegyzései.</p>
+<p><a href="{% url 'changelog.views.index' %}" class="btn btn-inverse"><i class="icon-white icon-arrow-left"></i> Vissza a címlapra</a>
+</div>
+<div>
 {% if changelogs %}
     <ul>
-    {% for changelog in changelogs %}
-        <li><a href="{% url 'changelog.views.detail' year=changelog.date|date:'Y' month=changelog.date|date:'m' day=changelog.date|date:'d' %}">{{ changelog.date_str }}</a></li>
+    {% for month in months %}
+        <li><a href="{% url 'changelog.views.archive_month' year=month|date:'Y' month=month|date:'m' %}">{{ month|date:'F' }}</a></li>
+        {% for changelog in changelogs %}
+            <ul>
+            {% if changelog.date.month == month.month %}
+                <li><a href="{% url 'changelog.views.detail' year=changelog.date|date:'Y' month=changelog.date|date:'m' day=changelog.date|date:'d' %}">{{ changelog.date_str }}</a></li>
+            {% endif %}
+            </ul>
+        {% endfor %}
     {% endfor %}
     </ul>
 {% else %}
     <p>Nincs changelog bejegyzés.</p>
 {% endif %}
+</div>
+<p><a href="{% url 'changelog.views.index' %}" class="btn btn-inverse"><i class="icon-white icon-arrow-left"></i> Vissza a címlapra</a></p>
+{% endblock %}

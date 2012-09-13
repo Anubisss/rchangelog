@@ -1,23 +1,43 @@
+{% extends 'changelog/skel.html' %}
+
+{% block title %}Összes bejegyzés{% endblock %}
+
+{% block content %}
 {% load url from future %}
+<div class="hero-unit">
+<h1>Összes bejegyzés</h1>
+<p>2012 és 2011 év bejegyzései.</p>
+<p><a href="{% url 'changelog.views.index' %}" class="btn btn-inverse"><i class="icon-white icon-arrow-left"></i> Vissza a címlapra</a>
+</div>
 {% if changelogs %}
     {% for year in years %}
-        <a href="{% url 'changelog.views.archive_year' year=year %}">{{ year }}</a>
+        {% cycle '<div class="row-fluid">' '' '' %}
+        <div class="span4">
+        <h3><a href="{% url 'changelog.views.archive_year' year=year %}">{{ year }}</a></h3>
         <ul>
         {% for ym in years_months %}
             {% if year == ym.year %}
                 <li><a href="{% url 'changelog.views.archive_month' year=ym|date:'Y' month=ym|date:'m' %}">{{ ym|date:'F' }}</a>
-                    <ul>
-                    {% for c in changelogs %}
-                        {% if c.date.year == ym.year and c.date.month == ym.month %}
-                            <li><a href="{% url 'changelog.views.detail' year=c.date|date:'Y' month=c.date|date:'m' day=c.date|date:'d' %}">{{ c.date_str }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                    </ul>
+                <ul>
+                {% for c in changelogs %}
+                    {% if c.date.year == ym.year and c.date.month == ym.month %}
+                        <li><a href="{% url 'changelog.views.detail' year=c.date|date:'Y' month=c.date|date:'m' day=c.date|date:'d' %}">{{ c.date_str }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
                 </li>
             {% endif %}
         {% endfor %}
         </ul>
+        </div>
+        {% if forloop.last %}
+            </div>
+        {% else %}
+            {% cycle '' '' '</div>' %}
+        {% endif %}
     {% endfor %}
 {% else %}
     <p>Nincs changelog bejegyzés.</p>
 {% endif %}
+<p><a href="{% url 'changelog.views.index' %}" class="btn btn-inverse"><i class="icon-white icon-arrow-left"></i> Vissza a címlapra</a></p>
+{% endblock %}
