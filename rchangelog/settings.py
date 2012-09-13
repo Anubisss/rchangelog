@@ -4,7 +4,7 @@
 
 PROJECT_ROOT = '/path/to/rchangelog' # project mappa (itt talalhato a manage.py fajl)
 SITE_NAME = 'rWorld Changelog' # oldal neve, ez jelenik meg a cimsavban, menuben es a page-header-ben
-SITE_FOOTER_ADDRESS = '<a href="http://rworld.hu/">rWorld</a>' # ez jelenik meg alul a footerben a "&copy; datum" utan
+SITE_FOOTER_ADDRESS = '<a href="http://rworld.hu/">rWorld</a>' # ez jelenik meg alul a footerben a "&copy; ev" utan
 
 # #############################################################################
 
