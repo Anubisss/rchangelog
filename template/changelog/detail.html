@@ -23,7 +23,7 @@
         <h3>{{ clc.changelog_label.name }}</h3>
         <ul>
             {% for cle in clc.changelog_label_entries %}
-                <li>{% filter bbcode %} {{ cle.content }} {% endfilter %}</li>
+                <li>{% filter bbcode %}{{ cle.content }}{% endfilter %}</li>
             {% endfor %}
         </ul>
         </div>

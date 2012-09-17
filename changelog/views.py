@@ -46,7 +46,7 @@ def detail(request, year, month, day):
     changelog = get_object_or_404(ChangelogEntry, date=c_date)
 
     if changelog.public == False and not request.user.is_staff: # ha nem publikus akkor csak a staff lathatja
-        raise Http404();
+        raise Http404()
 
     changelog_label_entries = changelog.changeloglabelentry_set.all()
 
