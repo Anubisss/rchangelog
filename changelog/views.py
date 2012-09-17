@@ -3,13 +3,14 @@ from changelog.models import ChangelogEntry, ChangelogLabel
 from datetime import date
 from django.http import Http404
 from django.template import RequestContext
+from django.conf import settings
 
 def index(request):
     # TODO: public
     latest_changelog = ChangelogEntry.objects.latest(field_name='date')
     ym = date(latest_changelog.date.year, latest_changelog.date.month, 1)
     latest_changelogs = ChangelogEntry.objects.filter(date__year=ym.year, date__month=ym.month) # utolso havi bejegyzesek
-    return render_to_response('changelog/index.html', {'ym': ym, 'latest_changelogs': latest_changelogs}, context_instance=RequestContext(request))
+    return render_to_response('changelog/index.html', {'ym': ym, 'latest_changelogs': latest_changelogs, 'changelog_explanation': settings.SITE_INDEX_CHANGELOG_EXPLANATION}, context_instance=RequestContext(request))
 
 def archive_all(request):
     changelogs = ChangelogEntry.objects.filter(public=True)
