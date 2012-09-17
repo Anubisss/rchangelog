@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # Django settings for rchangelog project.
 
 # rChangelog specifikus beallitasok, tehat nem Django default
