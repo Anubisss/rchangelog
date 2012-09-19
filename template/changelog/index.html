@@ -5,7 +5,7 @@
 {% block content %}
 <div class="hero-unit">
 <h1>Changelog</h1>
-{% load first_p %}
+{% load changelog_filters %}
 {{ changelog_explanation|first_p|safe }}
 <p><a class="btn btn-primary btn-large" href="#myModal" data-toggle="modal">Bővebben <i class="icon-white icon-arrow-right"></i></a></p>
 </div>

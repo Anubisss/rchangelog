@@ -16,7 +16,7 @@
 <p><a href="{% url 'changelog.views.index' %}" class="btn btn-inverse"><i class="icon-white icon-arrow-left"></i> Vissza a címlapra</a>
 </div>
 <div id="fixes">
-{% load bbcode %}
+{% load changelog_filters %}
 {% if changelog_labels %}
     {% for clc in changelog_labels %}
         <div class="fix_category_node">
