@@ -9,7 +9,7 @@ SITE_NAME = 'rWorld Changelog' # oldal neve, ez jelenik meg a cimsavban, menuben
 SITE_FOOTER_ADDRESS = '<a href="http://rworld.hu/">rWorld</a>' # ez jelenik meg alul a footerben a "&copy; ev" utan
 SITE_INDEX_CHANGELOG_EXPLANATION = '''
 <h4>Javítások</h4>
-<p>A javítások (amik néha rontások) elsődlegesen a <a href="http://www.trinitycore.org/" target="_blank">TrinityCore</a>-tól (<abbr title="TrinityCore">TC</abbr>) származnak, de jó pár fixet mi magunk írunk meg. A <abbr title="TrinityCore">TC</abbr> javításai (<a href="https://github.com/TrinityCore/TrinityCore/commits" target="_blank">commitok</a>) a <a href="https://github.com/TrinityCore/TrinityCore" target="_blank">saját</a> <a href="http://en.wikipedia.org/wiki/Repository_(version_control)" target="_blank">repository</a>-jában (az emu &quot;tárhelye&quot;) tekinthetők meg.</p>
+<p>A javítások (amik néha rontások) elsődlegesen a <a href="http://www.trinitycore.org/" target="_blank">TrinityCore</a>-tól (<abbr title="TrinityCore">TC</abbr>) származnak, de jó pár fixet mi magunk írunk meg. A <abbr title="TrinityCore">TC</abbr> javításai (<a href="https://github.com/TrinityCore/TrinityCore/commits" target="_blank">commitok</a>) a <a href="https://github.com/TrinityCore/TrinityCore" target="_blank">saját repository</a>-jában (az emu &quot;tárhelye&quot;) tekinthetők meg.</p>
 <p>Mivel viszonylag sok fixet nyújt a <abbr title="TrinityCore">TC</abbr>, így ezeket is próbáljuk írni a changelog-ba, persze csak azokat, amelyeket egy átlagos player képes megérteni és kihathatnak a játékára. Ne feledd, hogy vannak olyan javítások is (elsősorban a <abbr title="TrinityCore">TC</abbr>-től), amik nálunk még nem elérhetők (pl.: insta fixek), mert az adott &quot;dolog&quot; még nincs engedélyezve.</p>
 <p>Minden egyes frissítés közben (ha késik, akkor utána) megpróbáljuk az adott frissítés által hozott változásokat <strong>itt</strong> közzé tenni. A changelogokat próbáljuk logikusan, átláthatóan felépíteni.</p>
 <h4>rCore</h4>
@@ -17,7 +17,7 @@ SITE_INDEX_CHANGELOG_EXPLANATION = '''
 <h4>Bug jelentő</h4>
 <p>Ha a munkánkat szeretnéd segíteni, akkor szívesen fogadunk bugokat a <a href="http://bug.rworld.hu/" target="_blank">bug jelentő oldalunkon</a> (és nem ticketben).</p>
 <h4>IRC</h4>
-<p>Ha munkánkat közvetettebben szeretnéd segíteni (talán a fejlesztők rögös útját szeretnéd járni), akkor pedig <a href="http://irc.rworld.hu/" target="_blank">IRC</a>-re érdemes először felnézned, ott biztosan akad valaki, aki foglalkozzon a tehetségekkel.</p>
+<p>Ha munkánkat közvetettebben szeretnéd segíteni (talán a fejlesztők rögös útját szeretnéd járni), akkor pedig <a href="http://hu.wikipedia.org/wiki/Internet_Relay_Chat" target="_blank">IRC</a>-re érdemes először felnézned, ott biztosan akad valaki, aki foglalkozzon a tehetségekkel.</p>
 ''' # ez jelenik meg az index oldalon a "Bovebben" gombra kattintva
     # tovabba a "Bovebben" gomb felett megjelenik a szoveg <p>elso paragrafusa</p> is, (ha egy sincs akkor az egesz szoveg)
 
