@@ -43,3 +43,13 @@ footer {
 #fixes .btn {
   margin-top: 50px;
 }
+
+.modal-body p {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.modal-body h4 {
+  border-bottom: 1px solid #000;
+  margin-top: 30px;
+}

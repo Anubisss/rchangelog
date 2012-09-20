@@ -17,7 +17,7 @@ SITE_INDEX_CHANGELOG_EXPLANATION = '''
 <h4>Bug jelentő</h4>
 <p>Ha a munkánkat szeretnéd segíteni, akkor szívesen fogadunk bugokat a <a href="http://bug.rworld.hu/" target="_blank">bug jelentő oldalunkon</a> (és nem ticketben).</p>
 <h4>IRC</h4>
-<p>Ha munkánkat közvetettebben szeretnéd segíteni (talán a fejlesztők rögös útját szeretnéd járni), akkor pedig <a href="http://hu.wikipedia.org/wiki/Internet_Relay_Chat" target="_blank">IRC</a>-re érdemes először felnézned, ott biztosan akad valaki, aki foglalkozzon a tehetségekkel.</p>
+<p>Ha munkánkat közvetettebben szeretnéd segíteni (talán a fejlesztők rögös útját szeretnéd járni), akkor pedig <a href="http://hu.wikipedia.org/wiki/Internet_Relay_Chat" target="_blank">IRC</a>-re érdemes először felnézned, ott biztosan akad valaki, aki foglalkozzon a tehetségekkel: <a href="http://irc.rworld.hu/" target="_blank">irc.rworld.hu</a>.</p>
 ''' # ez jelenik meg az index oldalon a "Bovebben" gombra kattintva
     # tovabba a "Bovebben" gomb felett megjelenik a szoveg <p>elso paragrafusa</p> is, (ha egy sincs akkor az egesz szoveg)
 
