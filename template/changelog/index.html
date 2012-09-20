@@ -7,12 +7,12 @@
 <h1>Changelog</h1>
 {% load changelog_filters %}
 {{ changelog_explanation|first_p|safe }}
-<p><a class="btn btn-primary btn-large" href="#myModal" data-toggle="modal">Bővebben <i class="icon-white icon-arrow-right"></i></a></p>
+<p><a class="btn btn-primary btn-large" href="#changelog_more" data-toggle="modal">Bővebben <i class="icon-white icon-arrow-right"></i></a></p>
 </div>
-<div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal hide fade" id="changelog_more" tabindex="-1" role="dialog" aria-labelledby="changelog_more_label" aria-hidden="true">
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h3 id="myModalLabel">Changelog</h3>
+<h3 id="changelog_more_label">Changelog</h3>
 </div>
 <div class="modal-body">
 {{ changelog_explanation|safe }}
