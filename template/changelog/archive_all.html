@@ -12,7 +12,7 @@
 {% if changelogs %}
     {% for year in years %}
         {% cycle '<div class="row-fluid">' '' '' %}
-        <div class="span4">
+        <div class="span4 year_entry">
         <h3><a href="{% url 'changelog.views.archive_year' year=year %}">{{ year }}</a></h3>
         <ul>
         {% for ym in years_months %}
