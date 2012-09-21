@@ -22,6 +22,10 @@ footer {
   margin-left: 10px;
 }
 
+#fixes .btn {
+  margin-top: 50px;
+}
+
 .fix_category_node:first-child {
   margin-top: 80px;
 }
@@ -40,25 +44,21 @@ footer {
   margin-left: 5px;
 }
 
-#fixes .btn {
-  margin-top: 50px;
-}
-
-.modal-body p {
+.modal-body.changelog_more p {
   margin-top: 10px;
   margin-bottom: 20px;
 }
 
-.modal-body h4 {
+.modal-body.changelog_more h4 {
   border-bottom: 1px solid #000;
   margin-top: 30px;
 }
 
-.row-fluid .btn-info {
+.fresh_entries .btn-info {
   margin-top: 15px;
 }
 
-.row-fluid h2 {
+.fresh_entries h2 {
   border-bottom: 2px dashed #000;
   width: 40%;
   margin-bottom: 25px;
