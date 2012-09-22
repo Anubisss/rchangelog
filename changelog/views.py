@@ -12,37 +12,37 @@ def index(request):
     return render_to_response('changelog/index.html', {'ym': ym, 'latest_changelogs': latest_changelogs, 'changelog_explanation': settings.SITE_INDEX_CHANGELOG_EXPLANATION}, context_instance=RequestContext(request))
 
 def archive_all(request):
-    changelogs = ChangelogEntry.objects.filter(public=True)
-    years = list()
-    years_months = list()
-    for c in changelogs:
-        if c.date.year not in years:
-            years.append(c.date.year)
-        d = date(c.date.year, c.date.month, 1)
-        if d not in years_months:
-            years_months.append(d)
+    changelogs = ChangelogEntry.objects.filter(public=True) # osszes publikus bejegyzes
+    years = list() # evek listaja
+    years_months = list() # evek es honapok listaja
+    for changelog in changelogs:
+        if changelog.date.year not in years: # ez az ev meg nem szerepel a listaban
+            years.append(changelog.date.year)
+        ym_date = date(changelog.date.year, changelog.date.month, 1) # rendes datum generalasa, nap mindig 1.
+        if ym_date not in years_months: # ha az ev es honap meg nem szerepel
+            years_months.append(ym_date)
     return render_to_response('changelog/archive_all.html', {'changelogs': changelogs, 'years': years, 'years_months': years_months}, context_instance=RequestContext(request))
 
 def archive_year(request, year):
     changelogs = ChangelogEntry.objects.filter(date__year=year, public=True)
     months = list()
-    for c in changelogs:
-        month = date(int(year), c.date.month, 1)
+    for changelog in changelogs:
+        month = date(int(year), changelog.date.month, 1)
         if month not in months:
             months.append(month)
     return render_to_response('changelog/archive_year.html', {'year': year, 'changelogs': changelogs, 'months': months}, context_instance=RequestContext(request))
 
 def archive_month(request, year, month):
     changelogs = ChangelogEntry.objects.filter(date__year=year, date__month=month, public=True)
-    ym = date(int(year), int(month), 1)
-    return render_to_response('changelog/archive_month.html', {'ym': ym, 'changelogs': changelogs}, context_instance=RequestContext(request))
+    ym_date = date(int(year), int(month), 1)
+    return render_to_response('changelog/archive_month.html', {'ym': ym_date, 'changelogs': changelogs}, context_instance=RequestContext(request))
 
 def old_url(request, year, month, day):
     return redirect('changelog.views.detail', year=year, month=month, day=day)
 
 def detail(request, year, month, day):
-    c_date = date(int(year), int(month), int(day))
-    changelog = get_object_or_404(ChangelogEntry, date=c_date)
+    changelog_date = date(int(year), int(month), int(day))
+    changelog = get_object_or_404(ChangelogEntry, date=changelog_date)
 
     if changelog.public == False and not request.user.is_staff: # ha nem publikus akkor csak a staff lathatja
         raise Http404()
