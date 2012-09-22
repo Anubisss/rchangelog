@@ -41,7 +41,10 @@ def old_url(request, year, month, day):
     return redirect('changelog.views.detail', year=year, month=month, day=day)
 
 def detail(request, year, month, day):
-    changelog_date = date(int(year), int(month), int(day))
+    try:
+        changelog_date = date(int(year), int(month), int(day))
+    except ValueError:
+        raise Http404()
     changelog = get_object_or_404(ChangelogEntry, date=changelog_date)
 
     if changelog.public == False and not request.user.is_staff: # ha nem publikus akkor csak a staff lathatja
