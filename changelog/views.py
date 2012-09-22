@@ -9,7 +9,7 @@ def index(request):
     latest_changelog = ChangelogEntry.objects.filter(public=True).latest() # utolso (datum alapjan) publikus bejegyzes
     ym = date(latest_changelog.date.year, latest_changelog.date.month, 1) # utolso bejegyzesbol a datum kinyerese
     latest_changelogs = ChangelogEntry.objects.filter(date__year=ym.year, date__month=ym.month, public=True) # utolso havi publikus bejegyzesek
-    return render_to_response('changelog/index.html', {'ym': ym, 'latest_changelogs': latest_changelogs, 'changelog_explanation': settings.SITE_INDEX_CHANGELOG_EXPLANATION}, context_instance=RequestContext(request))
+    return render_to_response('changelog/index.html', {'ym': ym, 'latest_changelogs': latest_changelogs, 'changelog_explanation': settings.SITE_INDEX_CHANGELOG_EXPLANATION, 'col2': settings.SITE_INDEX_COL2}, context_instance=RequestContext(request))
 
 def archive_all(request):
     changelogs = ChangelogEntry.objects.filter(public=True) # osszes publikus bejegyzes

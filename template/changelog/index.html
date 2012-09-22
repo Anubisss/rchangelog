@@ -22,7 +22,7 @@
 </div>
 </div>
 <div class="row-fluid">
-<div class="span12 fresh_entries">
+<div class="span6 fresh_entries">
 {% load url from future %}
 <h2>Friss bejegyzések</h2>
 <ul>
@@ -39,6 +39,9 @@
 </li>
 </ul>
 <p><a class="btn btn-info" href="{% url 'changelog.views.archive_all' %}">Összes <i class="icon-white icon-arrow-right"></i></a></p>
+</div>
+<div class="span6">
+{{ col2|safe }}
 </div>
 </div>
 {% endblock %}
