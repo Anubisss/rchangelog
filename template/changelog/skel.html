@@ -16,10 +16,10 @@
 <a class="brand" href="{% url 'changelog.views.index' %}">{{ SITE_NAME }}</a>
 <ul class="nav">
 {% load changelog_tags %}
-{% url 'changelog.views.detail' year=latest_changelog.date|date:'Y' month=latest_changelog.date|date:'m' day=latest_changelog.date|date:'d' as url_latest_changelog %}
+{% url 'changelog.views.detail' year=LATEST_CHANGELOG.date|date:'Y' month=LATEST_CHANGELOG.date|date:'m' day=LATEST_CHANGELOG.date|date:'d' as url_latest_changelog %}
 {% url 'changelog.views.archive_all' as url_archive_all %}
-{% if latest_changelog %}
-    <li{% active_navbar request.path url_latest_changelog %}><a href="{{ url_latest_changelog }}">Legfrissebb bejegyzés: {{ latest_changelog.date_str }}</a></li>
+{% if LATEST_CHANGELOG %}
+    <li{% active_navbar request.path url_latest_changelog %}><a href="{{ url_latest_changelog }}">Legfrissebb bejegyzés: {{ LATEST_CHANGELOG.date_str }}</a></li>
 {% endif %}
 <li{% active_navbar request.path url_archive_all %}><a href="{{ url_archive_all }}">Összes bejegyzés</a></li>
 {% block active_nav %}{% endblock %}

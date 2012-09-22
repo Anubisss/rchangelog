@@ -4,7 +4,7 @@
 
 {% block active_nav %}
 {% load url from future %}
-{% if changelog != latest_changelog %} {# Csak akkor rakjuk ki az uj aktiv menut, ha az nem egyezik a legutolso bejegyzessel, mivel az mar kint a menuben. #}
+{% if changelog != LATEST_CHANGELOG %} {# Csak akkor rakjuk ki az uj aktiv menut, ha az nem egyezik a legutolso bejegyzessel, mivel az mar kint a menuben. #}
     <li class="active"><a href="{% url 'changelog.views.detail' year=changelog.date|date:'Y' month=changelog.date|date:'m' day=changelog.date|date:'d' %}">Bejegyzés: {{ changelog.date_str }}</a></li>
 {% endif %}
 {% endblock %}
