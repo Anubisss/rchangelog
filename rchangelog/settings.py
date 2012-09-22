@@ -20,19 +20,11 @@ SITE_INDEX_CHANGELOG_EXPLANATION = '''
 <p>Ha munkánkat közvetettebben szeretnéd segíteni (talán a fejlesztők rögös útját szeretnéd járni), akkor pedig <a href="http://hu.wikipedia.org/wiki/Internet_Relay_Chat" target="_blank">IRC</a>-re érdemes először felnézned, ott biztosan akad valaki, aki foglalkozzon a tehetségekkel: <a href="http://irc.rworld.hu/" target="_blank">irc.rworld.hu</a>.</p>
 ''' # ez jelenik meg az index oldalon a "Bovebben" gombra kattintva
     # tovabba a "Bovebben" gomb felett megjelenik a szoveg <p>elso paragrafusa</p> is, (ha egy sincs akkor az egesz szoveg)
-SITE_INDEX_COL2 = '''
-<div class="fb-like-box" data-href="https://www.facebook.com/rWorld.hu" data-width="292" data-height="300" data-show-faces="true" data-stream="false" data-header="false" style="position: absolute; right: 2%;"></div>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-var js, fjs = d.getElementsByTagName(s)[0];
-if (d.getElementById(id)) return;
-js = d.createElement(s); js.id = id;
-js.src = "//connect.facebook.net/hu_HU/all.js#xfbml=1";
-fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-''' # index oldalon a 2. "oszlopban" jelenik meg
-    # facebook like oldalt erdemes ide tenni
-    # ha semmit sem, akkor siman ures string: SITE_INDEX_COL2 = ''
+SITE_INDEX_COL2 = '<div class="fb-like-box" data-href="https://www.facebook.com/rWorld.hu" data-width="292" data-height="300" data-show-faces="true" data-stream="false" data-header="false" style="position: absolute; right: 2%;"></div>'
+                  # index oldalon a 2. "oszlopban" jelenik meg
+                  # facebook like oldalt erdemes ide tenni
+                  # ha semmit sem, akkor siman ures string: SITE_INDEX_COL2 = ''
+SITE_URL = 'http://rworld.hu/changelog' # ez a Facebook like gombja miatt kell
 
 # #############################################################################
 

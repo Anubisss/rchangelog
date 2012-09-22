@@ -4,10 +4,12 @@
 
 {% block content %}
 <div class="hero-unit">
+<div class="fb-like social_button" data-href="{{ SITE_URL }}{{ request.get_full_path }}" data-send="false" data-layout="box_count" data-width="450" data-show-faces="false"></div>
+<div class="social_button"><a href="https://twitter.com/share" class="twitter-share-button" data-lang="hu">Tweet</a></div>
 <h1>Changelog</h1>
 {% load changelog_filters %}
 {{ changelog_explanation|first_p|safe }}
-<p><a class="btn btn-primary btn-large" href="#changelog_more" data-toggle="modal">Bővebben <i class="icon-white icon-arrow-right"></i></a></p>
+<a class="btn btn-primary btn-large" href="#changelog_more" data-toggle="modal">Bővebben <i class="icon-white icon-arrow-right"></i></a>
 </div>
 <div class="modal hide fade" id="changelog_more" tabindex="-1" role="dialog" aria-labelledby="changelog_more_label" aria-hidden="true">
 <div class="modal-header">

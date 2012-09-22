@@ -9,5 +9,6 @@ def my_context_processor(request):
     return {
         'SITE_NAME': settings.SITE_NAME,
         'SITE_FOOTER_ADDRESS': settings.SITE_FOOTER_ADDRESS,
+        'SITE_URL': settings.SITE_URL,
         'latest_changelog': latest_changelog
     }

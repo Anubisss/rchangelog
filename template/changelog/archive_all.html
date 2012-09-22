@@ -5,6 +5,8 @@
 {% block content %}
 {% load url from future %}
 <div class="hero-unit">
+<div class="fb-like social_button" data-href="{{ SITE_URL }}{{ request.get_full_path }}" data-send="false" data-layout="box_count" data-width="450" data-show-faces="false"></div>
+<div class="social_button"><a href="https://twitter.com/share" class="twitter-share-button" data-lang="hu">Tweet</a></div>
 <h1>Összes bejegyzés</h1>
 <p>
 {% for year in years %}

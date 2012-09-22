@@ -8,6 +8,7 @@
 <link href="{% static 'changelog/css/rchangelog.css' %}" rel="stylesheet">
 </head>
 <body>
+<div id="fb-root"></div>
 <div class="navbar">
 <div class="navbar-inner">
 <div class="container-fluid">
@@ -36,5 +37,13 @@
 </div>
 <script src="{% static 'changelog/js/jquery.min.js' %}"></script>
 <script src="{% static 'changelog/js/bootstrap.min.js' %}"></script>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "//connect.facebook.net/hu_HU/all.js#xfbml=1";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 </body>
 </html>

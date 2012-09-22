@@ -10,12 +10,18 @@ footer {
   margin-bottom: 30px;
 }
 
-.hero-unit p {
+.hero-unit p,
+.hero-unit div {
   margin-left: 15px;
 }
 
 .hero-unit .btn {
   margin-top: 20px;
+}
+
+.hero-unit .social_button {
+  margin-left: -30px;
+  margin-bottom: 5px;
 }
 
 #fixes {

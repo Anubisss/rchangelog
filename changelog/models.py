@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 class ChangelogEntry(models.Model):
     date = models.DateField(unique=True) # a changelog bejegyzes "cime"
     public = models.BooleanField() # a bejegyzes lathato-e mindenki szamara
+    custom_like_url = models.CharField(max_length=64, blank=True) # Facebook like gombhoz tartozo sajat URL
 
     def __unicode__(self):
         return self.date.__str__()
@@ -24,7 +25,7 @@ class ChangelogEntry(models.Model):
     # meg nem publikus bejegyzesek ellenorzesekor jol jon
     def PreviewLink(self):
         return '<a href="%s" target="_blank">%s</a>' % (reverse('changelog.views.detail', kwargs={'year': self.date.strftime('%Y'), 'month': self.date.strftime('%m'), 'day': self.date.strftime('%d')}), self.date_str())
-    PreviewLink.allow_tags = True # HTML tagok engedelyezese, igy nincs escape-eles
+    PreviewLink.allow_tags = True # HTML tagok engedelyezese, igy nincs escape-eles az admin feluleten
     PreviewLink.short_description = 'Preview'
 
     class Meta:
