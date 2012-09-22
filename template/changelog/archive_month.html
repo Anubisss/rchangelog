@@ -13,8 +13,9 @@
 <p>Március és Április hónap bejegyzései.</p>
 <p><a href="{% url 'changelog.views.index' %}" class="btn btn-inverse"><i class="icon-white icon-arrow-left"></i> Vissza a címlapra</a>
 </div>
-<div>
+<div class="year_entry">
 {% if changelogs %}
+    <h3>{{ ym.year }}. {{ ym|date:'F' }}</h3>
     <ul>
     {% for changelog in changelogs %}
         <li><a href="{% url 'changelog.views.detail' year=changelog.date|date:'Y' month=changelog.date|date:'m' day=changelog.date|date:'d' %}">{{ changelog.date_str }}</a></li>
