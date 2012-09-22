@@ -1,1 +1,12 @@
-404
+{% extends 'changelog/skel.html' %}
+
+{% block title %}Hiba 404: Az oldal nem található{% endblock %}
+
+{% block content %}
+<div class="hero-unit">
+<h1>Hiba 404</h1>
+<p>Az oldal nem található.</p>
+{% load url from future %}
+<a href="{% url 'changelog.views.index' %}" class="btn btn-inverse"><i class="icon-white icon-arrow-left"></i> Vissza a címlapra</a>
+</div>
+{% endblock %}
