@@ -28,8 +28,8 @@ SITE_URL = 'http://rworld.hu/changelog' # ez a Facebook like gombja miatt kell
 
 # #############################################################################
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+DEBUG = False
+TEMPLATE_DEBUG = False
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
