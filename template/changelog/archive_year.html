@@ -29,7 +29,7 @@
 {% if changelogs %}
     <ul>
     {% for month in months %}
-        <li><a href="{% url 'changelog.views.archive_month' year=month|date:'Y' month=month|date:'m' %}">{{ month|date:'F' }}</a></li>
+        <li><a href="{% url 'changelog.views.archive_month' year=month|date:'Y' month=month|date:'m' %}">{{ month|date:'F' }}</a>
         {% for changelog in changelogs %}
             <ul>
             {% if changelog.date.month == month.month %}
@@ -37,6 +37,7 @@
             {% endif %}
             </ul>
         {% endfor %}
+        </li>
     {% endfor %}
     </ul>
 {% else %}
