@@ -9,7 +9,7 @@
 <p>
 {% for year in years %}
 <a href="#{{ year }}_modal" data-toggle="modal">{{ year }}</a>{% if not forloop.last %}{% if forloop.counter == years|length|add:'-1' %}{# utolso elotti loop #} és{% else %},{% endif %}{% endif %}{% endfor %}
-év bejegyzései.
+bejegyzései.
 </p>
 <p><a href="{% url 'changelog.views.index' %}" class="btn btn-inverse"><i class="icon-white icon-arrow-left"></i> Vissza a címlapra</a>
 </div>
@@ -48,7 +48,7 @@
     <div class="modal hide fade" id="{{ year }}_modal" tabindex="-1" role="dialog" aria-labelledby="{{ year }}_modal_label" aria-hidden="true">
     <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3 id="_modal_label">{{ year }}. év bejegyzései</h3>
+    <h3 id="_modal_label">{{ year }}. bejegyzései</h3>
     </div>
     <div class="modal-body">
     <h4><a href="{% url 'changelog.views.archive_year' year=year %}">{{ year }}</a></h4>
