@@ -4,7 +4,7 @@
 
 {% block active_nav %}
 {% load url from future %}
-{% if changelog != latest_changelog %}
+{% if changelog != latest_changelog %} {# Csak akkor rakjuk ki az uj aktiv menut, ha az nem egyezik a legutolso bejegyzessel, mivel az mar kint a menuben. #}
     <li class="active"><a href="{% url 'changelog.views.detail' year=changelog.date|date:'Y' month=changelog.date|date:'m' day=changelog.date|date:'d' %}">Bejegyzés: {{ changelog.date_str }}</a></li>
 {% endif %}
 {% endblock %}
@@ -22,9 +22,11 @@
         <div class="fix_category_node">
         <h3>{{ clc.changelog_label.name }}</h3>
         <ul>
-            {% for cle in clc.changelog_label_entries %}
-                <li>{% filter bbcode %}{{ cle.content }}{% endfilter %}</li>
-            {% endfor %}
+        {# Rovid formatum (cle.content|bbcode) hasznalata nem jo mivel akkor escape-eli az altalunk generalt kodot is. #}
+        {# Es ha megprobaljuk ezt nem escape-elni (cle.content|bbcode|safe) akkor pedig semmi sem lesz esacpe-elve. #}
+        {% for cle in clc.changelog_label_entries %}
+            <li>{% filter bbcode %}{{ cle.content }}{% endfilter %}</li>
+        {% endfor %}
         </ul>
         </div>
     {% endfor %}

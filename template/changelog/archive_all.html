@@ -11,7 +11,7 @@
 </div>
 {% if changelogs %}
     {% for year in years %}
-        {% cycle '<div class="row-fluid">' '' '' %}
+        {% cycle '<div class="row-fluid">' '' '' %}{# Minden 3. loopnal div nyitasa, 1-el kezdve. Tehat i % 3 == 1 #}
         <div class="span4 year_entry">
         <h3><a href="{% url 'changelog.views.archive_year' year=year %}">{{ year }}</a></h3>
         <ul>
@@ -30,10 +30,10 @@
         {% endfor %}
         </ul>
         </div>
-        {% if forloop.last %}
+        {% if forloop.last %}{# Ha ez az utolso loop, akkor mindenkeppen zarjuk le a div-et. #}
             </div>
         {% else %}
-            {% cycle '' '' '</div>' %}
+            {% cycle '' '' '</div>' %}{# Minden 3. loopnal div lezaras, 3-al kezdve. Tehat i % 3 == 0#}
         {% endif %}
     {% endfor %}
 {% else %}

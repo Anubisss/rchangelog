@@ -1,6 +1,8 @@
 from django import template
 import re
 
+# sajat template filter-ek
+
 register = template.Library()
 
 # egyszeru bbcode
