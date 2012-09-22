@@ -8,7 +8,8 @@
 <h1>Összes bejegyzés</h1>
 <p>
 {% for year in years %}
-<a href="#{{ year }}_modal" data-toggle="modal">{{ year }}</a>{% if not forloop.last %}{% if forloop.counter == years|length|add:'-1' %}{# utolso elotti loop #} és{% else %},{% endif %}{% endif %}{% endfor %}
+    <a href="#{{ year }}_modal" data-toggle="modal">{{ year }}</a>{% if not forloop.last %}{% if forloop.counter == years|length|add:'-1' %}{# utolso elotti loop #} és{% else %},{% endif %}{% endif %}
+{% endfor %}
 bejegyzései.
 </p>
 <p>Összesen {{ changelogs|length }} changelog bejegyzés.</p>
