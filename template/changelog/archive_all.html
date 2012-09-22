@@ -8,12 +8,14 @@
 <div class="fb-like social_button" data-href="{{ SITE_URL }}{{ request.get_full_path }}" data-send="false" data-layout="box_count" data-width="450" data-show-faces="false"></div>
 <div class="social_button"><a href="https://twitter.com/share" class="twitter-share-button" data-lang="hu">Tweet</a></div>
 <h1>Összes bejegyzés</h1>
-<p>
-{% for year in years %}
-    <a href="#{{ year }}_modal" data-toggle="modal">{{ year }}</a>{% if not forloop.last %}{% if forloop.counter == years|length|add:'-1' %}{# utolso elotti loop #} és{% else %},{% endif %}{% endif %}
-{% endfor %}
-bejegyzései.
-</p>
+{% if changelogs %}
+    <p>
+    {% for year in years %}
+        <a href="#{{ year }}_modal" data-toggle="modal">{{ year }}</a>{% if not forloop.last %}{% if forloop.counter == years|length|add:'-1' %}{# utolso elotti loop #} és{% else %},{% endif %}{% endif %}
+    {% endfor %}
+    bejegyzései.
+    </p>
+{% endif %}
 <p>Összesen {{ changelogs|length }} changelog bejegyzés.</p>
 <a href="{% url 'changelog.views.index' %}" class="btn btn-inverse"><i class="icon-white icon-arrow-left"></i> Vissza a címlapra</a>
 </div>
@@ -44,37 +46,39 @@ bejegyzései.
             {% cycle '' '' '</div>' %}{# Minden 3. loopnal div lezaras, 3-al kezdve. Tehat i % 3 == 0#}
         {% endif %}
     {% endfor %}
+    {% for year in years %}
+        <div class="modal hide fade" id="{{ year }}_modal" tabindex="-1" role="dialog" aria-labelledby="{{ year }}_modal_label" aria-hidden="true">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 id="_modal_label">{{ year }}. bejegyzései</h3>
+        </div>
+        <div class="modal-body">
+        <h4><a href="{% url 'changelog.views.archive_year' year=year %}">{{ year }}</a></h4>
+        <ul>
+        {% for ym in years_months %}
+            {% if year == ym.year %}
+                <li><a href="{% url 'changelog.views.archive_month' year=ym|date:'Y' month=ym|date:'m' %}">{{ ym|date:'F' }}</a>
+                <ul>
+                {% for c in changelogs %}
+                    {% if c.date.year == ym.year and c.date.month == ym.month %}
+                        <li><a href="{% url 'changelog.views.detail' year=c.date|date:'Y' month=c.date|date:'m' day=c.date|date:'d' %}">{{ c.date_str }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+                </li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+        </div>
+        <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Bezár</button>
+        </div>
+        </div>
+    {% endfor %}
 {% else %}
-    <p>Nincs changelog bejegyzés.</p>
+    <div class="row-fluid">
+    <div class="span4 year_entry">Nincs changelog bejegyzés.</div>
+    </div>
 {% endif %}
 <p><a href="{% url 'changelog.views.index' %}" class="btn btn-inverse"><i class="icon-white icon-arrow-left"></i> Vissza a címlapra</a></p>
-{% for year in years %}
-    <div class="modal hide fade" id="{{ year }}_modal" tabindex="-1" role="dialog" aria-labelledby="{{ year }}_modal_label" aria-hidden="true">
-    <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3 id="_modal_label">{{ year }}. bejegyzései</h3>
-    </div>
-    <div class="modal-body">
-    <h4><a href="{% url 'changelog.views.archive_year' year=year %}">{{ year }}</a></h4>
-    <ul>
-    {% for ym in years_months %}
-        {% if year == ym.year %}
-            <li><a href="{% url 'changelog.views.archive_month' year=ym|date:'Y' month=ym|date:'m' %}">{{ ym|date:'F' }}</a>
-            <ul>
-            {% for c in changelogs %}
-                {% if c.date.year == ym.year and c.date.month == ym.month %}
-                    <li><a href="{% url 'changelog.views.detail' year=c.date|date:'Y' month=c.date|date:'m' day=c.date|date:'d' %}">{{ c.date_str }}</a></li>
-                {% endif %}
-            {% endfor %}
-            </ul>
-            </li>
-        {% endif %}
-    {% endfor %}
-    </ul>
-    </div>
-    <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Bezár</button>
-    </div>
-    </div>
-{% endfor %}
 {% endblock %}

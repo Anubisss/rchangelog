@@ -18,7 +18,9 @@
 {% load changelog_tags %}
 {% url 'changelog.views.detail' year=latest_changelog.date|date:'Y' month=latest_changelog.date|date:'m' day=latest_changelog.date|date:'d' as url_latest_changelog %}
 {% url 'changelog.views.archive_all' as url_archive_all %}
-<li{% active_navbar request.path url_latest_changelog %}><a href="{{ url_latest_changelog }}">Legfrissebb bejegyzés: {{ latest_changelog.date_str }}</a></li>
+{% if latest_changelog %}
+    <li{% active_navbar request.path url_latest_changelog %}><a href="{{ url_latest_changelog }}">Legfrissebb bejegyzés: {{ latest_changelog.date_str }}</a></li>
+{% endif %}
 <li{% active_navbar request.path url_archive_all %}><a href="{{ url_archive_all }}">Összes bejegyzés</a></li>
 {% block active_nav %}{% endblock %}
 </ul>

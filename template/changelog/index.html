@@ -28,17 +28,21 @@
 {% load url from future %}
 <h2>Friss bejegyzések</h2>
 <ul>
-<li><a href="{% url 'changelog.views.archive_year' year=ym|date:'Y' %}">{{ ym.year }}</a>
-<ul>
-<li><a href="{% url 'changelog.views.archive_month' year=ym|date:'Y' month=ym|date:'m' %}">{{ ym|date:'F' }}</a>
-<ul>
-{% for changelog in latest_changelogs %}
-    <li><a href="{% url 'changelog.views.detail' year=changelog.date|date:'Y' month=changelog.date|date:'m' day=changelog.date|date:'d' %}">{{ changelog.date_str }}</a></li>
-{% endfor %}
+{% if latest_changelogs %}
+    <li><a href="{% url 'changelog.views.archive_year' year=ym|date:'Y' %}">{{ ym.year }}</a>
+    <ul>
+    <li><a href="{% url 'changelog.views.archive_month' year=ym|date:'Y' month=ym|date:'m' %}">{{ ym|date:'F' }}</a>
+    <ul>
+    {% for changelog in latest_changelogs %}
+        <li><a href="{% url 'changelog.views.detail' year=changelog.date|date:'Y' month=changelog.date|date:'m' day=changelog.date|date:'d' %}">{{ changelog.date_str }}</a></li>
+    {% endfor %}
 </ul>
 </li>
 </ul>
 </li>
+{% else %}
+    <li>Nincs bejegyzés.</li>
+{% endif %}
 </ul>
 <p><a class="btn btn-info" href="{% url 'changelog.views.archive_all' %}">Összes <i class="icon-white icon-arrow-right"></i></a></p>
 </div>

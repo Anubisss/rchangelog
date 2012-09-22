@@ -6,10 +6,14 @@ from django.template import RequestContext
 from django.conf import settings
 
 def index(request):
-    latest_changelog = ChangelogEntry.objects.filter(public=True).latest() # utolso (datum alapjan) publikus bejegyzes
-    ym = date(latest_changelog.date.year, latest_changelog.date.month, 1) # utolso bejegyzesbol a datum kinyerese
-    latest_changelogs = ChangelogEntry.objects.filter(date__year=ym.year, date__month=ym.month, public=True) # utolso havi publikus bejegyzesek
-    return render_to_response('changelog/index.html', {'ym': ym, 'latest_changelogs': latest_changelogs, 'changelog_explanation': settings.SITE_INDEX_CHANGELOG_EXPLANATION, 'col2': settings.SITE_INDEX_COL2}, context_instance=RequestContext(request))
+    latest_changelog = ChangelogEntry.objects.filter(public=True)
+    ym = None
+    latest_changelogs = None
+    if latest_changelog:
+        latest_changelog = latest_changelog.latest() # utolso (datum alapjan) publikus bejegyzes
+        ym = date(latest_changelog.date.year, latest_changelog.date.month, 1) # utolso bejegyzesbol a datum kinyerese
+        latest_changelogs = ChangelogEntry.objects.filter(date__year=ym.year, date__month=ym.month, public=True) # utolso havi publikus bejegyzesek
+    return render_to_response('changelog/index.html', {'latest_changelogs': latest_changelogs, 'ym': ym, 'changelog_explanation': settings.SITE_INDEX_CHANGELOG_EXPLANATION, 'col2': settings.SITE_INDEX_COL2}, context_instance=RequestContext(request))
 
 def archive_all(request):
     changelogs = ChangelogEntry.objects.filter(public=True) # osszes publikus bejegyzes
@@ -30,12 +34,12 @@ def archive_year(request, year):
         month = date(int(year), changelog.date.month, 1)
         if month not in months:
             months.append(month)
-    return render_to_response('changelog/archive_year.html', {'year': year, 'changelogs': changelogs, 'months': months}, context_instance=RequestContext(request))
+    return render_to_response('changelog/archive_year.html', {'changelogs': changelogs, 'year': year, 'months': months}, context_instance=RequestContext(request))
 
 def archive_month(request, year, month):
     changelogs = ChangelogEntry.objects.filter(date__year=year, date__month=month, public=True)
     ym_date = date(int(year), int(month), 1)
-    return render_to_response('changelog/archive_month.html', {'ym': ym_date, 'changelogs': changelogs}, context_instance=RequestContext(request))
+    return render_to_response('changelog/archive_month.html', {'changelogs': changelogs, 'ym': ym_date}, context_instance=RequestContext(request))
 
 def old_url(request, year, month, day):
     return redirect('changelog.views.detail', year=year, month=month, day=day)

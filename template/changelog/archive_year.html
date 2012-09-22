@@ -13,12 +13,14 @@
 <div class="fb-like social_button" data-href="{{ SITE_URL }}{{ request.get_full_path }}" data-send="false" data-layout="box_count" data-width="450" data-show-faces="false"></div>
 <div class="social_button"><a href="https://twitter.com/share" class="twitter-share-button" data-lang="hu">Tweet</a></div>
 <h1>{{ year }}. bejegyzései</h1>
-<p>
-{% for month in months %}
-    <a href="#{{ month|date:'m' }}_modal" data-toggle="modal">{{ month|date:'F' }}</a>{% if not forloop.last %}{% if forloop.counter == months|length|add:'-1' %}{# utolso elotti loop #} és{% else %},{% endif %}{% endif %}
-{% endfor %}
-bejegyzései.
-</p>
+{% if changelogs %}
+    <p>
+    {% for month in months %}
+        <a href="#{{ month|date:'m' }}_modal" data-toggle="modal">{{ month|date:'F' }}</a>{% if not forloop.last %}{% if forloop.counter == months|length|add:'-1' %}{# utolso elotti loop #} és{% else %},{% endif %}{% endif %}
+    {% endfor %}
+    bejegyzései.
+    </p>
+{% endif %}
 <p>Összesen {{ changelogs|length }} bejegyzés.</p>
 <a href="{% url 'changelog.views.index' %}" class="btn btn-inverse"><i class="icon-white icon-arrow-left"></i> Vissza a címlapra</a>
 </div>
@@ -38,29 +40,31 @@ bejegyzései.
     {% endfor %}
     </ul>
 {% else %}
-    <p>Nincs changelog bejegyzés.</p>
+    Nincs changelog bejegyzés.
 {% endif %}
 </div>
 <p><a href="{% url 'changelog.views.index' %}" class="btn btn-inverse"><i class="icon-white icon-arrow-left"></i> Vissza a címlapra</a></p>
-{% for month in months %}
-    <div class="modal hide fade" id="{{ month|date:'m' }}_modal" tabindex="-1" role="dialog" aria-labelledby="{{ month|date:'m' }}_modal_label" aria-hidden="true">
-    <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3 id="{{ month|date:'m' }}_modal_label">{{ year }}. {{ month|date:'F' }} bejegyzései</h3>
-    </div>
-    <div class="modal-body">
-    <h4><a href="{% url 'changelog.views.archive_month' year=month|date:'Y' month=month|date:'m' %}">{{ year }}. {{ month|date:'F' }}</a></h4>
-    <ul>
-    {% for changelog in changelogs %}
-        {% if changelog.date.month == month.month %}
-            <li><a href="{% url 'changelog.views.detail' year=changelog.date|date:'Y' month=changelog.date|date:'m' day=changelog.date|date:'d' %}">{{ changelog.date_str }}</a></li>
-        {% endif %}
+{% if changelogs %}
+    {% for month in months %}
+        <div class="modal hide fade" id="{{ month|date:'m' }}_modal" tabindex="-1" role="dialog" aria-labelledby="{{ month|date:'m' }}_modal_label" aria-hidden="true">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 id="{{ month|date:'m' }}_modal_label">{{ year }}. {{ month|date:'F' }} bejegyzései</h3>
+        </div>
+        <div class="modal-body">
+        <h4><a href="{% url 'changelog.views.archive_month' year=month|date:'Y' month=month|date:'m' %}">{{ year }}. {{ month|date:'F' }}</a></h4>
+        <ul>
+        {% for changelog in changelogs %}
+            {% if changelog.date.month == month.month %}
+                <li><a href="{% url 'changelog.views.detail' year=changelog.date|date:'Y' month=changelog.date|date:'m' day=changelog.date|date:'d' %}">{{ changelog.date_str }}</a></li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+        </div>
+        <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Bezár</button>
+        </div>
+        </div>
     {% endfor %}
-    </ul>
-    </div>
-    <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Bezár</button>
-    </div>
-    </div>
-{% endfor %}
+{% endif %}
 {% endblock %}
