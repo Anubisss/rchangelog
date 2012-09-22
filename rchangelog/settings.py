@@ -31,11 +31,6 @@ SITE_URL = 'http://rworld.hu/changelog' # ez a Facebook like gombja miatt kell
 DEBUG = False
 TEMPLATE_DEBUG = False
 
-# az itt talalhato email cimekre exception eseten a rendszer kuld hiba uzenetet
-ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
-)
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
