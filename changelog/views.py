@@ -43,6 +43,7 @@ def old_url(request, year, month, day):
 def detail(request, year, month, day):
     try:
         changelog_date = date(int(year), int(month), int(day))
+    # range error, azaz nincs ilyen nap az adott ev/honapban
     except ValueError:
         raise Http404()
     changelog = get_object_or_404(ChangelogEntry, date=changelog_date)
