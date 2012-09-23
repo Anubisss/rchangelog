@@ -1,0 +1,82 @@
+===============================================================================
+|                                  rChangelog                                 |
+===============================================================================
+
+Az rChangelog a Django keretrendszerben irodott.
+Egy webes changelog rendszer, amely az rWorld (http://rworld.hu/) privat WoW
+szervernek lett irva.
+Eles mukodes itt megtekintheto: http://rworld.hu/changelog/
+
+Project repository: https://github.com/Anubisss/rchangelog
+
+=================================== LICENC ====================================
+A project a GNU GPLv3 lincenc alatt szabadon modosithato, felhasznalhato.
+A licenc a COPYING fileban megtalalhato, illetve a weben is elerheto
+a kovetkezo cimen: http://www.gnu.org/licenses/gpl-3.0.html
+
+================================= Szukseg van =================================
+    - Python-ra, http://python.org/
+    - Django-ra, https://www.djangoproject.com/
+    - Valamilyen web szerverre, pl.: Apache2, Nginx, Ligghtpd, stb.
+      Teszteles/fejlesztes celjabol a Django lightweight development
+      web szervere is tokeletes.
+ https://docs.djangoproject.com/en/dev/ref/django-admin/#django-admin-runserver
+    - Adatbazis rendszerre.
+      Django tobb fajtat is tamogat, pl.: SQLite3, MySQL, Oracle, PostgreSQL.
+
+============================ rChangelog telepitese ============================
+    - Letoltod a forrast: git clone git://github.com/Anubisss/rchangelog.git
+    - Configolod. Config file: rchangelog/settings.py
+      A config file eleg egyertelmu. A mukodeshez szukseges configok
+      a PROJECT_ROOT megadasa, SITE_URL beallitasa es
+      az adatbazis (DATABASES) konfiguralasa.
+    - SECRET_KEY megvaltoztatasa a config fileban.
+    - Utana johet a WSGI konfiguracio. A wsgi file a project gyoker mappajaban
+      talalhato. A "path" valtozoban meg kell adni a project gyokeret ugyanugy
+      mint a settings.py-ben a PROJECT_ROOT-ot.
+      Ennek a filenak a segitsegel tudjak majd a web szerverek
+      elerni a projectet.
+    - Statikus fajlok osszegyujtese a static mappaba.
+      python manage.py collectstatic
+    - DB felepitese, super user letrehozasa.
+      python manage.py syncdb
+      Kesobb az admin feluleten keresztul lehet majd meg super usereket
+      hozzaadni.
+
+==================================== MySQL ====================================
+    - Felhasznalo letrehozasa.
+      CREATE USER 'rchangelogger'@'localhost' IDENTIFIED BY 'jelszo';
+    - DB letrehozasa UTF-8-as kodolassal.
+      CREATE DATABASE rchangelog CHARACTER SET utf8;
+    - A megfelelo jogok biztositasa a felhasznalonak a DB-re.
+      GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER
+            ON rchangelog.* TO 'rchangelogger'@'localhost';
+
+=================================== Apache2 ===================================
+    - A VirtualHost direktivaba csak 2 sor.
+      WSGIScriptAlias /changelog /path/to/rchangelog/wsgi
+      Alias /static/ /path/to/rchangelog/static/
+      Az rworld-on igy erheto el a rendszer.
+    - A static vegere kell a / jel, nelkule nem mukodik!
+
+================================ Admin felulet ================================
+    - Az admin felulet alapbol a /legnagyobbkiralycsavok/ cimen erheto
+      el. Ez a cim konnyen megvaltoztathato az rchangelog/urls.py file
+      modositasaval.
+
+================================== TESZTELVE ==================================
+    - Django 1.4.0 & Python 2.6.4 & Apache/2.2.12
+    - Google Chrome 21.0, Firefox 15.0.1, Opera 12.02 es
+      Internet Explorer 9.0.9
+
+    - Ajanlott bongeszo: Google Chrome
+
+================= Amik nelkul nem jott volna letre a project ==================
+    - Python
+    - Django
+    - Twitter Bootstrap, http://twitter.github.com/bootstrap/
+    - jQuery, http://jquery.com/
+
+
+
+                                             anuka <anuka kukac rworld pont hu>
