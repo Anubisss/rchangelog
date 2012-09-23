@@ -6,7 +6,7 @@ class ChangelogLabelEntryForm(ModelForm):
     class Meta:
         model = ChangelogLabelEntry
         widgets = {
-            'content': Textarea(attrs={'cols': 140, 'rows': 3}), # textarea hasznalata
+            'content': Textarea(attrs={'cols': 120, 'rows': 3}), # textarea hasznalata
         }
 
 class ChangelogLabelEntryInline(admin.TabularInline):
