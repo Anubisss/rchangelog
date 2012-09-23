@@ -17,6 +17,7 @@ def index(request):
 
 def archive_all(request):
     changelogs = ChangelogEntry.objects.filter(public=True) # osszes publikus bejegyzes
+    fixes_count = 0
     years = list() # evek listaja
     years_months = list() # evek es honapok listaja
     for changelog in changelogs:
@@ -25,21 +26,27 @@ def archive_all(request):
         ym_date = date(changelog.date.year, changelog.date.month, 1) # rendes datum generalasa, nap mindig 1.
         if ym_date not in years_months: # ha az ev es honap meg nem szerepel
             years_months.append(ym_date)
-    return render_to_response('changelog/archive_all.html', {'changelogs': changelogs, 'years': years, 'years_months': years_months}, context_instance=RequestContext(request))
+        fixes_count += changelog.ChangelogLabelEntry_Count()
+    return render_to_response('changelog/archive_all.html', {'changelogs': changelogs, 'fixes_count': fixes_count, 'years': years, 'years_months': years_months}, context_instance=RequestContext(request))
 
 def archive_year(request, year):
     changelogs = ChangelogEntry.objects.filter(date__year=year, public=True)
+    fixes_count = 0
     months = list()
     for changelog in changelogs:
         month = date(int(year), changelog.date.month, 1)
         if month not in months:
             months.append(month)
-    return render_to_response('changelog/archive_year.html', {'changelogs': changelogs, 'year': year, 'months': months}, context_instance=RequestContext(request))
+        fixes_count += changelog.ChangelogLabelEntry_Count()
+    return render_to_response('changelog/archive_year.html', {'changelogs': changelogs, 'fixes_count': fixes_count, 'year': year, 'months': months}, context_instance=RequestContext(request))
 
 def archive_month(request, year, month):
     changelogs = ChangelogEntry.objects.filter(date__year=year, date__month=month, public=True)
+    fixes_count = 0
     ym_date = date(int(year), int(month), 1)
-    return render_to_response('changelog/archive_month.html', {'changelogs': changelogs, 'ym': ym_date}, context_instance=RequestContext(request))
+    for changelog in changelogs:
+        fixes_count += changelog.ChangelogLabelEntry_Count()
+    return render_to_response('changelog/archive_month.html', {'changelogs': changelogs, 'fixes_count': fixes_count, 'ym': ym_date}, context_instance=RequestContext(request))
 
 def old_url(request, year, month, day):
     return redirect('changelog.views.detail', year=year, month=month, day=day)

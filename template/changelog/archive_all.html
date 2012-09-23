@@ -16,7 +16,7 @@
     bejegyzései.
     </p>
 {% endif %}
-<p>Összesen {{ changelogs|length }} changelog bejegyzés.</p>
+<p>Összesen {{ changelogs|length }} changelog bejegyzés és {{ fixes_count }} javítás található.</p>
 <a href="{% url 'changelog.views.index' %}" class="btn btn-inverse"><i class="icon-white icon-arrow-left"></i> Vissza a címlapra</a>
 </div>
 {% if changelogs %}

@@ -12,7 +12,7 @@
 <div class="fb-like social_button" data-href="{{ SITE_URL }}{{ request.path_info }}" data-send="false" data-layout="box_count" data-width="450" data-show-faces="false"></div>
 <div class="social_button"><a href="https://twitter.com/share" class="twitter-share-button" data-lang="hu">Tweet</a></div>
 <h1>{{ ym.year }}. {{ ym|date:'F' }} bejegyzései</h1>
-<p>Összesen {{ changelogs|length }} bejegyzés.</p>
+<p>Összesen {{ changelogs|length }} bejegyzés és {{ fixes_count }} javítás található.</p>
 <a href="{% url 'changelog.views.index' %}" class="btn btn-inverse"><i class="icon-white icon-arrow-left"></i> Vissza a címlapra</a>
 </div>
 <div class="year_entry">
