@@ -11,7 +11,7 @@
 
 {% block content %}
 <div class="hero-unit">
-<div class="fb-like social_button" data-href="{% if changelog.custom_like_url %}{{ changelog.custom_like_url }}{% else %}{{ SITE_URL }}{{ request.get_full_path }}{% endif %}{# Custom like url. #}" data-send="false" data-layout="box_count" data-width="450" data-show-faces="false"></div>
+<div class="fb-like social_button" data-href="{% if changelog.custom_like_url %}{{ changelog.custom_like_url }}{% else %}{{ SITE_URL }}{{ request.path_info }}{% endif %}{# Custom like url. #}" data-send="false" data-layout="box_count" data-width="450" data-show-faces="false"></div>
 <div class="social_button"><a href="https://twitter.com/share" class="twitter-share-button" data-lang="hu">Tweet</a></div>
 <h1>{{ changelog.date_str }}</h1>
 {% if changelog_labels %}
