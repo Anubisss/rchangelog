@@ -2,6 +2,12 @@
 
 {% block title %}Bejegyzés: {{ changelog.date_str }}{% endblock %}
 
+{% block OG %}
+{% if changelog_labels %}
+    <meta property="og:description" content="{% for clc in changelog_labels %}{{ clc.changelog_label.name }}{% if not forloop.last %}{% if forloop.counter == changelog_labels|length|add:'-1' %}{# utolso elotti loop #} és {% else %}, {% endif %}{% endif %}{% endfor %} javítás{{ changelog_labels|pluralize:'ok' }} található{{ changelog_labels|pluralize:'k' }} a bejegyzésben.">
+{% endif %}
+{% endblock %}
+
 {% block active_nav %}
 {% load url from future %}
 {% if changelog != LATEST_CHANGELOG %} {# Csak akkor rakjuk ki az uj aktiv menut, ha az nem egyezik a legutolso bejegyzessel, mivel az mar kint a menuben. #}
