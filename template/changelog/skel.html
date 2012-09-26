@@ -5,6 +5,9 @@
 {% block OG %}{% endblock %}
 <title>{{ SITE_NAME }} | {% block title %}{% endblock %}</title>
 {% load staticfiles %}
+<!--[if lt IE 9]>
+<script src="{% static 'changelog/js/html5shiv.js' %}"></script>
+<![endif]-->
 <link href="{% static 'changelog/css/bootstrap.min.css' %}" rel="stylesheet">
 <link href="{% static 'changelog/css/rchangelog.min.css' %}" rel="stylesheet">
 </head>

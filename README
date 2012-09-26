@@ -76,6 +76,7 @@ a kovetkezo cimen: http://www.gnu.org/licenses/gpl-3.0.html
     - Django
     - Twitter Bootstrap, http://twitter.github.com/bootstrap/
     - jQuery, http://jquery.com/
+    - HTML5 Shiv, https://github.com/aFarkas/html5shiv
 
 
 
