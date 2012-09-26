@@ -27,7 +27,7 @@
         <ul>
         {% for ym in years_months %}
             {% if year == ym.year %}
-                <li><a href="{% url 'changelog.views.archive_month' year=ym|date:'Y' month=ym|date:'m' %}">{{ ym|date:'F' }}</a>
+                <li><a href="{% url 'changelog.views.archive_month' year=ym|date:'Y' month=ym|date:'m' %}">{{ ym|date:'F'|capfirst }}</a>
                 <ul>
                 {% for c in changelogs %}
                     {% if c.date.year == ym.year and c.date.month == ym.month %}
@@ -57,7 +57,7 @@
         <ul>
         {% for ym in years_months %}
             {% if year == ym.year %}
-                <li><a href="{% url 'changelog.views.archive_month' year=ym|date:'Y' month=ym|date:'m' %}">{{ ym|date:'F' }}</a>
+                <li><a href="{% url 'changelog.views.archive_month' year=ym|date:'Y' month=ym|date:'m' %}">{{ ym|date:'F'|capfirst }}</a>
                 <ul>
                 {% for c in changelogs %}
                     {% if c.date.year == ym.year and c.date.month == ym.month %}

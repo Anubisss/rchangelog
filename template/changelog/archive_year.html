@@ -16,7 +16,7 @@
 {% if changelogs %}
     <p>
     {% for month in months %}
-        <a href="#{{ month|date:'m' }}_modal" data-toggle="modal">{{ month|date:'F' }}</a>{% if not forloop.last %}{% if forloop.counter == months|length|add:'-1' %}{# utolso elotti loop #} és{% else %},{% endif %}{% endif %}
+        <a href="#{{ month|date:'m' }}_modal" data-toggle="modal">{{ month|date:'F'|capfirst }}</a>{% if not forloop.last %}{% if forloop.counter == months|length|add:'-1' %}{# utolso elotti loop #} és{% else %},{% endif %}{% endif %}
     {% endfor %}
     bejegyzései.
     </p>
@@ -29,7 +29,7 @@
 {% if changelogs %}
     <ul>
     {% for month in months %}
-        <li><a href="{% url 'changelog.views.archive_month' year=month|date:'Y' month=month|date:'m' %}">{{ month|date:'F' }}</a>
+        <li><a href="{% url 'changelog.views.archive_month' year=month|date:'Y' month=month|date:'m' %}">{{ month|date:'F'|capfirst }}</a>
         {% for changelog in changelogs %}
             <ul>
             {% if changelog.date.month == month.month %}
@@ -50,10 +50,10 @@
         <div class="modal hide fade" id="{{ month|date:'m' }}_modal" tabindex="-1" role="dialog" aria-labelledby="{{ month|date:'m' }}_modal_label" aria-hidden="true">
         <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3 id="{{ month|date:'m' }}_modal_label">{{ year }}. {{ month|date:'F' }} bejegyzései</h3>
+        <h3 id="{{ month|date:'m' }}_modal_label">{{ year }}. {{ month|date:'F'|capfirst }} bejegyzései</h3>
         </div>
         <div class="modal-body">
-        <h4><a href="{% url 'changelog.views.archive_month' year=month|date:'Y' month=month|date:'m' %}">{{ year }}. {{ month|date:'F' }}</a></h4>
+        <h4><a href="{% url 'changelog.views.archive_month' year=month|date:'Y' month=month|date:'m' %}">{{ year }}. {{ month|date:'F'|capfirst }}</a></h4>
         <ul>
         {% for changelog in changelogs %}
             {% if changelog.date.month == month.month %}

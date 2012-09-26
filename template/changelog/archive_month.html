@@ -1,22 +1,22 @@
 {% extends 'changelog/skel.html' %}
 
-{% block title %}{{ ym.year }}. {{ ym|date:'F' }} bejegyzései{% endblock %}
+{% block title %}{{ ym.year }}. {{ ym|date:'F'|capfirst }} bejegyzései{% endblock %}
 
 {% block active_nav %}
 {% load url from future %}
-<li class="active"><a href="{% url 'changelog.views.archive_month' year=ym|date:'Y' month=ym|date:'m' %}">{{ ym.year }}. {{ ym|date:'F' }} bejegyzései</a></li>
+<li class="active"><a href="{% url 'changelog.views.archive_month' year=ym|date:'Y' month=ym|date:'m' %}">{{ ym.year }}. {{ ym|date:'F'|capfirst }} bejegyzései</a></li>
 {% endblock %}
 
 {% block content %}
 <div class="hero-unit">
 <div class="fb-like social_button" data-href="{{ SITE_URL }}{{ request.path_info }}" data-send="false" data-layout="box_count" data-width="450" data-show-faces="false"></div>
 <div class="social_button"><a href="https://twitter.com/share" class="twitter-share-button" data-lang="hu">Tweet</a></div>
-<h1>{{ ym.year }}. {{ ym|date:'F' }} bejegyzései</h1>
+<h1>{{ ym.year }}. {{ ym|date:'F'|capfirst }} bejegyzései</h1>
 <p>Összesen {{ changelogs|length }} bejegyzés és {{ fixes_count }} javítás található.</p>
 <a href="{% url 'changelog.views.index' %}" class="btn btn-inverse"><i class="icon-white icon-arrow-left"></i> Vissza a címlapra</a>
 </div>
 <div class="year_entry">
-<h3>{{ ym.year }}. {{ ym|date:'F' }}</h3>
+<h3>{{ ym.year }}. {{ ym|date:'F'|capfirst }}</h3>
 {% if changelogs %}
     <ul>
     {% for changelog in changelogs %}

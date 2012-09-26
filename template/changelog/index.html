@@ -31,7 +31,7 @@
 {% if latest_changelogs %}
     <li><a href="{% url 'changelog.views.archive_year' year=ym|date:'Y' %}">{{ ym.year }}</a>
     <ul>
-    <li><a href="{% url 'changelog.views.archive_month' year=ym|date:'Y' month=ym|date:'m' %}">{{ ym|date:'F' }}</a>
+    <li><a href="{% url 'changelog.views.archive_month' year=ym|date:'Y' month=ym|date:'m' %}">{{ ym|date:'F'|capfirst }}</a>
     <ul>
     {% for changelog in latest_changelogs %}
         <li><a href="{% url 'changelog.views.detail' year=changelog.date|date:'Y' month=changelog.date|date:'m' day=changelog.date|date:'d' %}">{{ changelog.date_str }}</a></li>
